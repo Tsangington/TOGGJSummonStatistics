@@ -1,0 +1,22 @@
+{
+  "name": "toggjpitycounter",
+  "version": "1.0.0",
+  "description": "Tower of God: Great Journey Pity Counter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tsangington/TOGGJPityCounter.git"
+  },
+  "author": "Tsangington",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tsangington/TOGGJPityCounter/issues"
+  },
+  "homepage": "https://github.com/Tsangington/TOGGJPityCounter#readme",
+  "dependencies": {
+    "puppeteer": "^20.7.4"
+  }
+}
