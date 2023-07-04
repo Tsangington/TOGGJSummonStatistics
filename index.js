@@ -17,17 +17,34 @@ function sleep(ms) {
             visible = false;
           });
         return visible;
-      };
+    };
       
     let loadMoreVisible = await isElementVisible(page, getMoreButton);
-      while (loadMoreVisible) {
-        await page
-          .click(getMoreButton)
-          .catch(() => {});
-        loadMoreVisible = await isElementVisible(page, getMoreButton);
-      }
+        while (loadMoreVisible) {
+            await page
+                .click(getMoreButton)
+                .catch(() => {});
+            loadMoreVisible = await isElementVisible(page, getMoreButton);
+    }
+
+    const table = await page.$('#__next > div.layouts_layoutWrapper__afl7i > main > div > div > div > div.historyPage_historyListWrapper__cXHMV > table > tbody');
+    const summonData = await page.evaluate((table) => {
+        const rows = table.querySelectorAll('tr')
+        result = [];
+
+        for (let i=0; i < rows.length; i++) {
+            const cells = rows[i].querySelectorAll('th')
+            const rowData = [];
+            /*cells.length -1 since timestaps not needed */
+            for (let j = 0; j < (cells.length-1); j++) {
+                rowData.push(cells[j].innerText);
+            }
+            result.push(rowData);
+        }
+        return result;
+    }, table)
     
-    await sleep(10000);
+    console.log(summonData)
 
     await browser.close();
 })();
