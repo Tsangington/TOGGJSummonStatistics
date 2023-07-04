@@ -10,19 +10,19 @@ async function scrapeSummons(url) {
     const isElementVisible = async (page, getMoreButtonSelector) => {
         let visible = true;
         await page
-          .waitForSelector(getMoreButton, { visible: true, timeout: 2000 })
+          .waitForSelector(getMoreButtonSelector, { visible: true, timeout: 2000 })
           .catch(() => {
             visible = false;
           });
         return visible;
     };
       
-    let loadMoreVisible = await isElementVisible(page, getMoreButton);
+    let loadMoreVisible = await isElementVisible(page, getMoreButtonSelector);
         while (loadMoreVisible) {
             await page
-                .click(getMoreButton)
+                .click(getMoreButtonSelector)
                 .catch(() => {});
-            loadMoreVisible = await isElementVisible(page, getMoreButton);
+            loadMoreVisible = await isElementVisible(page, getMoreButtonSelector);
     }
 
     /*Parse table data*/ 
