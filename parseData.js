@@ -26,18 +26,21 @@ const { scrapeSummons } = require('./scrapeSummons');
 		}
 	}
 
-	var [redFiveStarCharacterData, redFourStarCharacterData, redThreeStarCharacterData,
-		redFiveStarWeaponData, redFourStarWeaponData, redThreeStarWeaponData	
+	var [redLegendaryCharacterData, redEpicCharacterData,
+		redLegendaryWeaponData, redEpicWeaponData	
 	] = sortCharacters(redSummonData)
 
 	var redSummonTotal = redSummonData.length
 	var blueSummonTotal = blueSummonData.length
 	var destinySummonTotal = destinySummonData.length
 
+	var redAvgPity = averagePity(redSummonTotal, redLegendaryCharacterData.length)
+
 	console.log("Total summons:", totalSummons)
 	console.log("Red Summon total:", redSummonTotal)
-	console.log("Total 5* from Red Summons:", redFiveStarCharacterData.length)
-	console.log(redFiveStarCharacterData)
+	console.log("Total 5* from Red Summons:", redLegendaryCharacterData.length)
+	console.log(redLegendaryCharacterData)
+	console.log(redAvgPity)
 	console.log("Blue summon total:", blueSummonTotal)
 	console.log("Destiny summon total:", destinySummonTotal)
 
@@ -47,7 +50,7 @@ function sortCharacters(summonData) {
 /*Have 4* and 5* characters and weapon names listed here */
 	var characterDictionary = 
 	{
-		"fiveStar":
+		"legendary":
 		[
 			"Bam",
 			"Viole",
@@ -82,7 +85,7 @@ function sortCharacters(summonData) {
 			"Kranos Yuri Ha",
 			"Donghae Hatz"
 		],
-		"fourStar":
+		"epic":
 		[
 			"Endorsi",
 			"Hatz",
@@ -105,7 +108,7 @@ function sortCharacters(summonData) {
 	};
 	var weaponDictionary =
 	{
-		"fiveStar":
+		"legendary":
 		[
 			"Blue Rune Angelic Spear",
 			"Guardian Bow",
@@ -144,7 +147,7 @@ function sortCharacters(summonData) {
 			"Black March",
 			"Green April (Transformed)"
 		],
-		"fourStar":
+		"epic":
 		[
 			"Crown Bow",
 			"Dark Chaser Book",
@@ -169,12 +172,11 @@ function sortCharacters(summonData) {
 		]
 	};
 
-	var fiveStarCharacters = [];
-	var fourStarCharacters = [];
-	var threeStarCharacters = [];
-	var fiveStarWeapons = [];
-	var fourStarWeapons = [];
-	var threeStarWeapons = [];
+	var legendaryCharacters = [];
+	var epicCharacters = [];
+
+	var legendaryWeapons = [];
+	var epicWeapons = [];
 
 	for (let index=0; index < summonData.length; index++) {
 		summonType = summonData[index][0]
@@ -183,34 +185,32 @@ function sortCharacters(summonData) {
 		
 		if (summonData[index][0] === "Character"){
 			// Character sorting
-			if ((characterDictionary.fiveStar).includes(summonName) === true) {
+			if ((characterDictionary.legendary).includes(summonName) === true) {
 				//5 stars
-				fiveStarCharacters.push([summonName, summonBanner])
+				legendaryCharacters.push([summonName, summonBanner])
 			
-			} else if ((characterDictionary.fourStar).includes(summonName) === true)  {
+			} else if ((characterDictionary.epic).includes(summonName) === true)  {
 				//4 stars
-				fourStarCharacters.push([summonName, summonBanner])
+				epicCharacters.push([summonName, summonBanner])
 
-			} else {
-				//3 stars
-				threeStarCharacters.push([summonName, summonBanner])
 			}
 		} else {
 			// Weapon sorting
-			if ((weaponDictionary.fiveStar).includes(summonName) === true) {
+			if ((weaponDictionary.legendary).includes(summonName) === true) {
 				
-				fiveStarWeapons.push([summonName, summonBanner])
+				legendaryWeapons.push([summonName, summonBanner])
 			
-			} else if ((weaponDictionary.fourStar).includes(summonName) === true)  {
+			} else if ((weaponDictionary.epic).includes(summonName) === true)  {
 				
-				fourStarWeapons.push([summonName, summonBanner])
-			} else {
-				//3 star
-				threeStarWeapons.push([summonName, summonBanner])
+				epicWeapons.push([summonName, summonBanner])
 			}
 		}
 	}
 	return(
-		[fiveStarCharacters, fourStarCharacters, threeStarCharacters,
-		 fiveStarWeapons, fourStarWeapons, threeStarWeapons])
+		[legendaryCharacters, epicCharacters,
+		 legendaryWeapons, epicWeapons])
+}
+
+function averagePity(numSummons, numPulled) {
+	return(numSummons/numPulled)
 }
