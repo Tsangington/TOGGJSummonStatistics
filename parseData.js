@@ -29,18 +29,27 @@ const { scrapeSummons } = require('./scrapeSummons');
 	var [redLegendaryCharacterData, redEpicCharacterData,
 		redLegendaryWeaponData, redEpicWeaponData	
 	] = sortCharacters(redSummonData)
+	var [blueLegendaryCharacterData, blueEpicCharacterData,
+		blueLegendaryWeaponData, blueEpicWeaponData	
+	] = sortCharacters(blueSummonData)
+	var [destinyLegendaryCharacterData, destinyEpicCharacterData,
+		destinyLegendaryWeaponData, destinyEpicWeaponData	
+	] = sortCharacters(destinySummonData)
+
+	var totalLegendaries = redLegendaryCharacterData.length + redLegendaryWeaponData.length + blueLegendaryCharacterData.length + blueLegendaryWeaponData.length + destinyLegendaryCharacterData.length + destinyLegendaryWeaponData.length
 
 	var redSummonTotal = redSummonData.length
 	var blueSummonTotal = blueSummonData.length
 	var destinySummonTotal = destinySummonData.length
 
-	var redAvgPity = averagePity(redSummonTotal, redLegendaryCharacterData.length)
+	var totalAvgPity = averagePity(totalSummons, totalLegendaries)
+	var redAvgPity = averagePity(redSummonTotal, redLegendaryCharacterData.length + redLegendaryWeaponData.length)
 
 	console.log("Total summons:", totalSummons)
+	console.log("Total Average Pity:", totalAvgPity)
 	console.log("Red Summon total:", redSummonTotal)
-	console.log("Total 5* from Red Summons:", redLegendaryCharacterData.length)
-	console.log(redLegendaryCharacterData)
-	console.log(redAvgPity)
+	console.log("Total 5* from Red Summons:", redLegendaryCharacterData.length + redLegendaryWeaponData.length)
+	console.log("Average Pity for Red Summons:", redAvgPity)
 	console.log("Blue summon total:", blueSummonTotal)
 	console.log("Destiny summon total:", destinySummonTotal)
 
