@@ -1,6 +1,7 @@
 const { scrapeSummons } = require('./scrapeSummons');
 
 (async function parseData() {
+
 	const url = 'https://global-tog-info.ngelgames.com/history/MTAyMzIxNjk=';
 	const totalSummonData = await scrapeSummons(url);
 
@@ -26,28 +27,27 @@ const { scrapeSummons } = require('./scrapeSummons');
 		}
 	}
 
-	var total = new SummonList(summonData = totalSummonData);
-	var red = new SummonList(summonData = redData);
-	var blue = new SummonList(summonData = blueData);
-	var destiny = new SummonList(summonData = destinyData);
+	var total = new SummonList(summonData = totalSummonData, summonType = "total");
+	var red = new SummonList(summonData = redData, summonType = "red");
+	var blue = new SummonList(summonData = blueData, summonType = "blue");
+	var destiny = new SummonList(summonData = destinyData, summonType = "destiny");
 
-	console.log("Total summons:", total.summonTotal)
-	console.log("Total average Legendary pity:", total.averageLegendaryPity)
-	console.log("Red summon total:", red.summonTotal)
-	console.log("Total 5* from Red summons:", red.numberLegendary)
-	console.log("Average Legendary pity for Red summons:", red.averageLegendaryPity)
-	console.log("Blue summon total:", blue.summonTotal)
-	console.log("Total 5* from Blue summons:", blue.numberLegendary)
-	console.log("Average Legendary pity for Blue summons:", blue.averageLegendaryPity)
-	console.log("Destiny summon total:", destiny.summonTotal)
-	console.log("Total 5* from Destiny summons:", destiny.numberLegendary)
-	console.log("Average Legendary pity for Destiny summons:", destiny.averageLegendaryPity)
+	var printSummons = [total, red, blue, destiny]
+
+	for (let i=0; i<printSummons.length; i++) {
+		console.log("number of", printSummons[i].summonType, "summons:", printSummons[i].summonTotal)
+		console.log("total Legendaries from", printSummons[i].summonType, "summons", printSummons[i].numberLegendary)
+		console.log(printSummons[i].summonType, "average Legendary pity:", printSummons[i].averageLegendaryPity)
+		console.log("total Epics from", printSummons[i].summonType, "summons", printSummons[i].numberEpic)
+		console.log(printSummons[i].summonType, "average Epic pity:", printSummons[i].averageEpicPity)
+	}
 })();
 
 class SummonList {
-	constructor(summonData) {
+	constructor(summonData, summonType) {
 		this.summonData = summonData
 		this.summonTotal = summonData.length
+		this.summonType = summonType
 		
 		var [legendaryCharacterData, 
 			epicCharacterData,
