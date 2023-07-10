@@ -2,8 +2,9 @@
   "name": "toggjpitycounter",
   "version": "1.0.0",
   "description": "Tower of God: Great Journey Pity Counter",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,10 @@
   },
   "homepage": "https://github.com/Tsangington/TOGGJPityCounter#readme",
   "dependencies": {
+    "express": "^4.18.2",
     "puppeteer": "^20.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
   }
 }

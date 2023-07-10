@@ -1,8 +1,7 @@
 const { scrapeSummons } = require('./scrapeSummons');
 
-(async function parseData() {
+async function parseData(url) {
 
-	const url = 'https://global-tog-info.ngelgames.com/history/MTAyMzIxNjk=';
 	const totalSummonData = await scrapeSummons(url);
 
 	var redData = [];
@@ -13,7 +12,7 @@ const { scrapeSummons } = require('./scrapeSummons');
 	for (let index=0; index < totalSummonData.length; index++) {
 		
 		summonType = totalSummonData[index][2]
-		if (summonType === "The One Who Opens The Tower's Door" || summonType === "Selective Summon") {
+		if (summonType === "The One Who Opens The Tower's Door" ) { //|| summonType === "Selective Summon"
 			
 			blueData.push(totalSummonData[index])
 
@@ -21,7 +20,10 @@ const { scrapeSummons } = require('./scrapeSummons');
 			
 			destinyData.push(totalSummonData[index])
 		
-		} else {
+		} else if (summonType.startsWith("Selective Summon") === true) {
+			continue
+		} 
+		else {
 			
 			redData.push(totalSummonData[index])
 		}
@@ -35,13 +37,17 @@ const { scrapeSummons } = require('./scrapeSummons');
 	var printSummons = [total, red, blue, destiny]
 
 	for (let i=0; i<printSummons.length; i++) {
+
 		console.log("number of", printSummons[i].summonType, "summons:", printSummons[i].summonTotal)
-		console.log("total Legendaries from", printSummons[i].summonType, "summons", printSummons[i].numberLegendary)
+		console.log("total Legendaries from", printSummons[i].summonType, "summons:", printSummons[i].numberLegendary)
 		console.log(printSummons[i].summonType, "average Legendary pity:", printSummons[i].averageLegendaryPity)
-		console.log("total Epics from", printSummons[i].summonType, "summons", printSummons[i].numberEpic)
+		console.log("total Epics from", printSummons[i].summonType, "summons:", printSummons[i].numberEpic)
 		console.log(printSummons[i].summonType, "average Epic pity:", printSummons[i].averageEpicPity)
+
 	}
-})();
+	
+	return (printSummons)
+};
 
 class SummonList {
 	constructor(summonData, summonType) {
@@ -66,6 +72,7 @@ class SummonList {
 		{
 			"legendary":
 				[
+					"Summer Splash Endorsi",
 					"Bam",
 					"Viole",
 					"First Thorn Bam",
@@ -91,7 +98,7 @@ class SummonList {
 					"Evan",
 					"Yura Ha",
 					"Waterbomb Commander Xiaxia",
-					"Albeda",
+					"Albelda",
 					"White Candy Khun",
 					"Bong Bong Endorsi",
 					"Karaka",
@@ -124,6 +131,7 @@ class SummonList {
 		{
 			"legendary":
 				[
+					"Aqua Bong Bong",
 					"Blue Rune Angelic Spear",
 					"Guardian Bow",
 					"Jahad Laevateinn",
@@ -231,3 +239,7 @@ class SummonList {
 		return (averagePityNumber)
 	}
 }
+module.exports = {
+	parseData
+}
+//parseData(url = 'https://global-tog-info.ngelgames.com/history/MTAyMzIxNjk=')
