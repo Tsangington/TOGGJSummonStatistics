@@ -29,7 +29,7 @@ async function parseData(url) {
 		}
 	}
 
-	var total = new SummonList(summonData = totalSummonData, summonType = "total");
+	var total = new SummonList(summonData = redData.concat(blueData, destinyData), summonType = "total");
 	var red = new SummonList(summonData = redData, summonType = "red");
 	var blue = new SummonList(summonData = blueData, summonType = "blue");
 	var destiny = new SummonList(summonData = destinyData, summonType = "destiny");
@@ -242,4 +242,6 @@ class SummonList {
 module.exports = {
 	parseData
 }
-//parseData(url = 'https://global-tog-info.ngelgames.com/history/MTAyMzIxNjk=')
+
+const url = 'https://global-tog-info.ngelgames.com/history/MTAyMzIxNjk='
+parseData(url)	
