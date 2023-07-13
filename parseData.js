@@ -14,6 +14,8 @@ async function parseData(url) {
 	
 	var printSummons = [total, ancient, red, blue, destiny]
 
+	splitRedBanners(red.allLegendariesData)
+
 	for (let i=0; i < printSummons.length; i++) {
 
 		console.log("number of", printSummons[i].summonType, "summons:", printSummons[i].summonTotal)
@@ -67,22 +69,78 @@ function splitSummonTypes(totalSummonData) {
 	return ([ancientData, redData, blueData, destinyData])
 }
 
+function splitRedBanners(redSummonData) {
+	var splitRedSummons = {}
+	var existingBannersPulled = []
+	var redCharacterDictionary = {
+
+		"Yihwa Yeon": "Gorgeous Yeon's Flame",
+		"White Heavenly Mirror Khun": "The Best Scammer, Khun",
+		"Bong Bong Endorsi": "The Tower's Idol",
+		"Jinsung Ha": "Jinsung Ha, The Great Families Slaughterer",
+		"Yura Ha": "The Blue Idol Star",
+		"White": "Ravaged Silver Throne",
+		"Albelda": "The Silver Revengeful Soul's Hope, Albelda",
+		"Karaka": "Slayer of FUG, Karaka",
+		"White Candy Khun": "Sweet Magic Like A Candy",
+		"Kranos Yuri Ha": "Dogmatic Princess",
+		"Donghae Hatz": "The One Who Disobeys His Destiny",
+		"Enryu": "Red-Blooded Judge",
+		"Waterbomb Commander Xiaxia": "Special Operations Commander of the Blazing Sun",
+		"Summer Splash Endorsi": "A Cool Shot in the Middle of the Summer!",
+		"Emerald Ocean Yihwa Yeon": "Flame Under The Blazing Sun"
+
+	}
+	var redWeaponDictionary = {
+
+		"Hairpin of Noble Power": "Yihwa Yeon's Exclusive Ignition Weapon Pick-up",
+		"White Heavenly Mirror": "White Heavenly Mirror Khun's Exclusive Ignition Weapon Pick-up",
+		"Bong Bong": "Bong Bong Endorsi's Exclusive Ignition Weapon Pick-up",
+		"Fist of the Dragon and Tiger": "Jinsung Ha's Exclusive Ignition Weapon Pick-up",
+		"Top Star's MIC": "Yura Ha's Exclusive Ignition Weapon Pick-up",
+		"Cullinan, Shinsu Sword": "White's Exclusive Ignition Weapon Pick-up",
+		"Sword of Revengeful Souls": "Albelda's Exclusive Ignition Weapon Pick-up",
+		"Iron Armor's Red Heart": "Karaka's Exclusive Ignition Weapon Pick-up",
+		"Magical Candy Cane": "White Candy Khun's Exclusive Ignition Weapon Pick-up",
+		"Kranos": "Kranos Yuri Ha's Exclusive Ignition Weapon Pick-up",
+		"Unleashed Donghae": "Donghae Hatz's Exclusive Ignition Weapon Pick-up",
+		"Red Rain": "Enryu's Exclusive Ignition Weapon Pick-up",
+		"Black Rabbit Water Gun": "Waterbomb Commander Xiaxia's Exclusive Ignition Weapon Pick-up",
+		"Aqua Bong Bong": "Summer Splash Endorsi's Exclusive Ignition Weapon Pick-up ",
+		"Sparkling Beach Floppy Hat": "Emerald Ocean Yihwa Yeon's Exclusive Ignition Weapon Pick-up"
+
+	}
+
+	for (let i=0; i < redSummonData.length; i++) {
+		summonType = redSummonData[i][1]
+
+		if (existingBannersPulled.includes(summonType) === true ) {
+			splitRedSummons[summonType].push(redSummonData[i][0])
+		}
+		else {
+			splitRedSummons[summonType] = []
+			splitRedSummons[summonType].push(redSummonData[i][0])
+			existingBannersPulled.push(summonType);
+		}
+	}
+	console.log(splitRedSummons)
+}
+
 class SummonList {
 	constructor(summonData, summonType) {
 		this.summonData = summonData
 		this.summonTotal = summonData.length
 		this.summonType = summonType
 		
-		var [ancientCharacterData,
-			legendaryCharacterData, 
-			epicCharacterData,
-			ancientWeaponData,
-			legendaryWeaponData, 
-			epicWeaponData] = this.sortRarities(summonData)
+		var [allAncientsData,
+			allLegendariesData,
+			allEpicsData] = this.sortRarities(summonData)
 		
-		this.numberAncient = ancientCharacterData.length + ancientWeaponData.length
-		this.numberLegendary = legendaryCharacterData.length + legendaryWeaponData.length
-		this.numberEpic = epicCharacterData.length + epicWeaponData.length
+		this.allLegendariesData = allLegendariesData
+		
+		this.numberAncient = allAncientsData.length
+		this.numberLegendary = allLegendariesData.length
+		this.numberEpic = allEpicsData.length
 		
 		this.averageAncientPity = this.averagePity(this.summonTotal, this.numberAncient)
 		this.averageLegendaryPity = this.averagePity(this.summonTotal, this.numberLegendary)
@@ -222,57 +280,40 @@ class SummonList {
 				]
 		};
 
-		var ancientCharacters = [];
-		var legendaryCharacters = [];
-		var epicCharacters = [];
-
-		var ancientWeapons = [];
-		var legendaryWeapons = [];
-		var epicWeapons = [];
+		var allAncients = [];
+		var allLegendaries = [];
+		var allEpics = []; 
 
 		for (let index = 0; index < summonData.length; index++) {
 			var summonName = summonData[index][1]
 			var summonBanner = summonData[index][2]
 
-			if (summonData[index][0] === "Character") {
-				// Character sorting
-				if ( characterDictionary.ancient.includes(summonName) === true) {
-					//ancient rarity
-					ancientCharacters.push([summonName, summonBanner])
+			// Character and weapon Sorting
+			if ( characterDictionary.ancient.includes(summonName) === true ||
+			weaponDictionary.ancient.includes(summonName) === true) {
 
-				}
-				else if ( characterDictionary.legendary.includes(summonName) === true) {
-					//legendary rarity
-					legendaryCharacters.push([summonName, summonBanner])
+				//ancient rarity
+				allAncients.push([summonName, summonBanner])
 
-				} else if ((characterDictionary.epic).includes(summonName) === true) {
-					//4 stars
-					epicCharacters.push([summonName, summonBanner])
-
-				}
-			} else {
-				// Weapon sorting
-				if ( weaponDictionary.ancient.includes(summonName) === true) {
-					//ancient rarity
-					ancientWeapons.push([summonName, summonBanner])
-
-				} else if ((weaponDictionary.legendary).includes(summonName) === true) {
-
-					legendaryWeapons.push([summonName, summonBanner])
-
-				} else if ((weaponDictionary.epic).includes(summonName) === true) {
-
-					epicWeapons.push([summonName, summonBanner])
-				}
 			}
+			else if ( characterDictionary.legendary.includes(summonName) === true ||
+			weaponDictionary.legendary.includes(summonName) === true) {
+
+				//legendary rarity
+				allLegendaries.push([summonName, summonBanner])
+
+			} else if ((characterDictionary.epic).includes(summonName) === true ||
+			weaponDictionary.epic.includes(summonName) === true) {
+				//4 stars
+				allEpics.push([summonName, summonBanner])
+
+			}
+			
 		}
 		return ([
-			ancientCharacters,
-			legendaryCharacters, 
-			epicCharacters,
-			ancientWeapons,
-			legendaryWeapons, 
-			epicWeapons
+			allAncients,
+			allLegendaries,
+			allEpics
 		])
 	}
 	averagePity(numSummons, numPulled) {
@@ -283,7 +324,7 @@ class SummonList {
 module.exports = {
 	parseData
 }
-
+const test2Url = "https://global-tog-info.ngelgames.com/history/MTAzMzMzOTQ="
 const testUrl = "https://global-tog-info.ngelgames.com/history/MTEyMDMzOTA="
 const url = 'https://global-tog-info.ngelgames.com/history/MTAyMzIxNjk='
-parseData(testUrl)	
+parseData(test2Url)	
