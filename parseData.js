@@ -96,6 +96,7 @@ class SummonList {
 				["Poe Bidau Gustang"],
 			"legendary":
 				[
+					"Emerald Ocean Yihwa Yeon",
 					"Summer Splash Endorsi",
 					"Bam",
 					"Viole",
@@ -157,6 +158,7 @@ class SummonList {
 				["Ancient Book of Origin"],
 			"legendary":
 				[
+					"Sparkling Beach Floppy Hat",
 					"Aqua Bong Bong",
 					"Blue Rune Angelic Spear",
 					"Guardian Bow",
