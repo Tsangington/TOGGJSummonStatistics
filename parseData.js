@@ -19,7 +19,7 @@ async function parseData(url) {
 		console.log("number of", printSummons[i].summonType, "summons:", printSummons[i].summonTotal)
 		if (i === 1){
 			console.log("total Ancients from", printSummons[i].summonType, "summons:", printSummons[i].numberAncient)
-			console.log(printSummons[i].summonType, "average Acient pity:", printSummons[i].averageAncientPity)
+			console.log(printSummons[i].summonType, "average Ancient pity:", printSummons[i].averageAncientPity)
 		}
 		console.log("total Legendaries from", printSummons[i].summonType, "summons:", printSummons[i].numberLegendary)
 		console.log(printSummons[i].summonType, "average Legendary pity:", printSummons[i].averageLegendaryPity)
