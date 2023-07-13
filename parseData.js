@@ -4,15 +4,51 @@ async function parseData(url) {
 
 	const totalSummonData = await scrapeSummons(url);
 
+	[ancientData, redData, blueData, destinyData] = splitSummonTypes(totalSummonData)
+
+	var total = new SummonList(summonData = ancientData.concat(redData, blueData, destinyData), summonType = "total");
+	var ancient = new SummonList(summonData = ancientData, summonType = "ancient")
+	var red = new SummonList(summonData = redData, summonType = "red");
+	var blue = new SummonList(summonData = blueData, summonType = "blue");
+	var destiny = new SummonList(summonData = destinyData, summonType = "destiny");
+	
+	var printSummons = [total, ancient, red, blue, destiny]
+
+	for (let i=0; i < printSummons.length; i++) {
+
+		console.log("number of", printSummons[i].summonType, "summons:", printSummons[i].summonTotal)
+		if (i === 1){
+			console.log("total Ancients from", printSummons[i].summonType, "summons:", printSummons[i].numberAncient)
+			console.log(printSummons[i].summonType, "average Acient pity:", printSummons[i].averageAncientPity)
+		}
+		console.log("total Legendaries from", printSummons[i].summonType, "summons:", printSummons[i].numberLegendary)
+		console.log(printSummons[i].summonType, "average Legendary pity:", printSummons[i].averageLegendaryPity)
+		console.log("total Epics from", printSummons[i].summonType, "summons:", printSummons[i].numberEpic)
+		console.log(printSummons[i].summonType, "average Epic pity:", printSummons[i].averageEpicPity)
+
+	}
+	
+	return (printSummons)
+};
+
+function splitSummonTypes(totalSummonData) {
+	
+	var ancientData = [];
 	var redData = [];
 	var blueData = [];
 	var destinyData = [];
 
 	totalSummons = totalSummonData.length
-	for (let index=0; index < totalSummonData.length; index++) {
-		
+	ancientBanners = ["The Aloof Wave of the Tower", "Poe Bidau Gustang's Exclusive Ignition Weapon."]
+
+	for (let index=0; index < totalSummons; index++) {
 		summonType = totalSummonData[index][2]
-		if (summonType === "The One Who Opens The Tower's Door" ) { //|| summonType === "Selective Summon"
+		if ( ancientBanners.includes(summonType) === true) {
+
+			ancientData.push(totalSummonData[index])
+
+		}
+		else if (summonType === "The One Who Opens The Tower's Door" ) { //|| summonType === "Selective Summon"
 			
 			blueData.push(totalSummonData[index])
 
@@ -28,26 +64,8 @@ async function parseData(url) {
 			redData.push(totalSummonData[index])
 		}
 	}
-
-	var total = new SummonList(summonData = redData.concat(blueData, destinyData), summonType = "total");
-	var red = new SummonList(summonData = redData, summonType = "red");
-	var blue = new SummonList(summonData = blueData, summonType = "blue");
-	var destiny = new SummonList(summonData = destinyData, summonType = "destiny");
-
-	var printSummons = [total, red, blue, destiny]
-
-	for (let i=0; i<printSummons.length; i++) {
-
-		console.log("number of", printSummons[i].summonType, "summons:", printSummons[i].summonTotal)
-		console.log("total Legendaries from", printSummons[i].summonType, "summons:", printSummons[i].numberLegendary)
-		console.log(printSummons[i].summonType, "average Legendary pity:", printSummons[i].averageLegendaryPity)
-		console.log("total Epics from", printSummons[i].summonType, "summons:", printSummons[i].numberEpic)
-		console.log(printSummons[i].summonType, "average Epic pity:", printSummons[i].averageEpicPity)
-
-	}
-	
-	return (printSummons)
-};
+	return ([ancientData, redData, blueData, destinyData])
+}
 
 class SummonList {
 	constructor(summonData, summonType) {
@@ -55,14 +73,18 @@ class SummonList {
 		this.summonTotal = summonData.length
 		this.summonType = summonType
 		
-		var [legendaryCharacterData, 
+		var [ancientCharacterData,
+			legendaryCharacterData, 
 			epicCharacterData,
+			ancientWeaponData,
 			legendaryWeaponData, 
 			epicWeaponData] = this.sortRarities(summonData)
 		
+		this.numberAncient = ancientCharacterData.length + ancientWeaponData.length
 		this.numberLegendary = legendaryCharacterData.length + legendaryWeaponData.length
 		this.numberEpic = epicCharacterData.length + epicWeaponData.length
-
+		
+		this.averageAncientPity = this.averagePity(this.summonTotal, this.numberAncient)
 		this.averageLegendaryPity = this.averagePity(this.summonTotal, this.numberLegendary)
 		this.averageEpicPity = this.averagePity(this.summonTotal, this.numberEpic)
 	}
@@ -70,6 +92,8 @@ class SummonList {
 	/*Have 4* and 5* characters and weapon names listed here */
 		var characterDictionary =
 		{
+			"ancient":
+				["Poe Bidau Gustang"],
 			"legendary":
 				[
 					"Summer Splash Endorsi",
@@ -129,6 +153,8 @@ class SummonList {
 		};
 		var weaponDictionary =
 		{
+			"ancient":
+				["Ancient Book of Origin"],
 			"legendary":
 				[
 					"Aqua Bong Bong",
@@ -194,9 +220,11 @@ class SummonList {
 				]
 		};
 
+		var ancientCharacters = [];
 		var legendaryCharacters = [];
 		var epicCharacters = [];
 
+		var ancientWeapons = [];
 		var legendaryWeapons = [];
 		var epicWeapons = [];
 
@@ -206,8 +234,13 @@ class SummonList {
 
 			if (summonData[index][0] === "Character") {
 				// Character sorting
-				if ((characterDictionary.legendary).includes(summonName) === true) {
-					//5 stars
+				if ( characterDictionary.ancient.includes(summonName) === true) {
+					//ancient rarity
+					ancientCharacters.push([summonName, summonBanner])
+
+				}
+				else if ( characterDictionary.legendary.includes(summonName) === true) {
+					//legendary rarity
 					legendaryCharacters.push([summonName, summonBanner])
 
 				} else if ((characterDictionary.epic).includes(summonName) === true) {
@@ -217,7 +250,11 @@ class SummonList {
 				}
 			} else {
 				// Weapon sorting
-				if ((weaponDictionary.legendary).includes(summonName) === true) {
+				if ( weaponDictionary.ancient.includes(summonName) === true) {
+					//ancient rarity
+					ancientWeapons.push([summonName, summonBanner])
+
+				} else if ((weaponDictionary.legendary).includes(summonName) === true) {
 
 					legendaryWeapons.push([summonName, summonBanner])
 
@@ -228,8 +265,10 @@ class SummonList {
 			}
 		}
 		return ([
+			ancientCharacters,
 			legendaryCharacters, 
 			epicCharacters,
+			ancientWeapons,
 			legendaryWeapons, 
 			epicWeapons
 		])
@@ -243,5 +282,6 @@ module.exports = {
 	parseData
 }
 
+const testUrl = "https://global-tog-info.ngelgames.com/history/MTEyMDMzOTA="
 const url = 'https://global-tog-info.ngelgames.com/history/MTAyMzIxNjk='
-parseData(url)	
+parseData(testUrl)	
