@@ -19,7 +19,9 @@ app.get("/summonstatistics", (request, response) => {
 
     //enter summonStats here
 
-    response.render('summonStatistics')
+    response.render('summonStatistics', {
+        
+    })
 })
 app.listen(port, () => {
     console.log(`Server has started on port: ${port}`)
