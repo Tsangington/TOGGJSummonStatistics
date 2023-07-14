@@ -363,4 +363,4 @@ module.exports = {
 const test2Url = "https://global-tog-info.ngelgames.com/history/MTAzMzMzOTQ="
 const testUrl = "https://global-tog-info.ngelgames.com/history/MTEyMDMzOTA="
 const url = 'https://global-tog-info.ngelgames.com/history/MTAyMzIxNjk='
-parseData(url)	
+	
