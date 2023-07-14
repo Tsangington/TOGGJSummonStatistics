@@ -181,7 +181,8 @@ function countFifties(splitRedData) {
 			}
 		}		
 	}
-	var fiftiesWonPercent = (fiftiesWon/ (fiftiesWon+ fiftiesLost))*100
+	var floatFiftiesWonPercent = (fiftiesWon/ (fiftiesWon+ fiftiesLost))*100
+	var fiftiesWonPercent = Math.round((floatFiftiesWonPercent + Number.EPSILON) * 100) / 100
 	return ([fiftiesWon, fiftiesLost, fiftiesWonPercent])
 }
 
@@ -376,7 +377,9 @@ class SummonList {
 		])
 	}
 	averagePity(numSummons, numPulled) {
-		var averagePityNumber = (numSummons/numPulled)
+		var floatAveragePity = (numSummons/numPulled)
+		var averagePityNumber = Math.round((floatAveragePity + Number.EPSILON) * 100) / 100
+		
 		return (averagePityNumber)
 	}
 }
@@ -386,7 +389,7 @@ module.exports = {
 }
 
 /*
-TESTING
+//TESTING
 const test2Url = "https://global-tog-info.ngelgames.com/history/MTAzMzMzOTQ="
 const testUrl = "https://global-tog-info.ngelgames.com/history/MTEyMDMzOTA="
 const url = 'https://global-tog-info.ngelgames.com/history/MTAyMzIxNjk='
@@ -395,4 +398,5 @@ let test = parseData(url)
 test.then(function(result) {
 	console.log(result) 
  })
-*/ 
+ 
+*/

@@ -6,6 +6,15 @@
     <form action="/giveURL" method="GET">
         <input type="text" name="enterURL" />
         <button>Get Your Summon Statistics!</button>
+        <br>
+        <p> Your Summon Statistics: </p>
+        <% for(let [summonType, statisticDictionary] of Object.entries(summonStatisticsObject)) { %>
+            <u><%= summonType %> Summons </u>
+            <% for(let [statisticType, statistic] of Object.entries(statisticDictionary)) { %>
+                <p><%= statisticType %>: <%= statistic %></p>
+            <% } %>
+        <% } %>
+
       </form>
     <form>
 
