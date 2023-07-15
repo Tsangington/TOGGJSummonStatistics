@@ -1,55 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('includes/head', {title: 'TOGGJ:GJ | Summon Statistics | Enter URL'}) %>
+<head>
+    <%- include('includes/head', {title: 'TOG:GJ-SS | Results' }) %>
+</head>
 
 <body>
-    <% var summonStatisticsObject = summonStatisticsObject %>
-        <br>
-        <p> Your Summon Statistics: </p>
-        <table class="mainTable">
-            <tr>
-                <td></td>
-                <td>Number of summons</td>
-                <td>Number of legendaries</td>
-                <td>Average legendary pity</td>
-                <td>Number of epics</td>
-                <td>Average epic pity</td>
-            </tr>
+    <header>
+        <%- include('includes/header'); %>
+    </header>
+    <div class="content-container">
+        <div class="padding-content"></div>
+            <div class="content">
+                <% var summonStatisticsObject = summonStatisticsObject %>
+                <h2> Your Summon Statistics </h2>
+                <h3 class="main-table-header">Total, Blue and Destiny Summons</h3>
+                <div class="table-container">
+                    <table class="main-summons-table">
+                        <tr>
+                            <td></td>
+                            <td>Number of summons</td>
+                            <td>Number of legendaries</td>
+                            <td>Average legendary pity</td>
+                            <td>Number of epics</td>
+                            <td>Average epic pity</td>
+                        </tr>
 
-            <% var mainTableKeys = ["Total", "Blue", "Destiny"]; %>
-            <% mainTableKeys.forEach(key => { %>
-                <% var statisticDictionary = summonStatisticsObject[key] %>
-                <tr>
-                    <td> <%= key %> </td>
-                    <% for(let [statisticType, statistic] of Object.entries(statisticDictionary)) { %>
-                    <td> <%= statistic %> </td>
-                    <% } %>
-                </tr>
-            <% }) %>
+                        <% var mainTableKeys = ["Total", "Blue", "Destiny"]; %>
+                        <% mainTableKeys.forEach(key => { %>
+                            <% var statisticDictionary = summonStatisticsObject[key] %>
+                            <tr>
+                                <td> <%= key %> </td>
+                                    <% for(let [statisticType, statistic] of Object.entries(statisticDictionary)) { %>
+                                <td> <%= statistic %> </td>
+                                <% } %>
+                            </tr>
+                        <% }) %>
+                    </table>
+                </div>
+                <p class="main-summons-footer">
+                    *Note: Total includes red, blue and destiny summons but not ancient summons since ancient has no legendary pity that shows up on the history.
+                </p>
+                <h3 class="ancient-summons-header">Ancient Summons</h3>
+                <div class="table-container">
+                    <table class="ancient-summons-table">
+                        <% var ancientTableHeaders = ["Number of summons", "Number of ancients", "Average ancient pity", "Number of legendaries", "Average legendary pity", "Number of epics", "Average epic pity"] %>
+                        <% var index=0 %>
 
-        </table>
-        <table class="ancientSummonsTable">
-            <% var ancientTableHeaders = ["Number of summons", "Number of ancients", "Average ancient pity", "Number of legendaries", "Average legendary pity", "Number of epics", "Average epic pity"] %>
-            <% var index=0 %>
+                        <tr>
+                            <td></td>
+                            <td>Ancient</td>
+                        </tr>
+                        <% for(let [statisticType, statistic] of Object.entries(summonStatisticsObject["Ancient"])) { %>
+                            <tr>
+                                <td> <%= ancientTableHeaders[index] %> </td>
+                                    <% index++ %>
+                                <td> <%= statistic %> </td>
+                            </tr>
+                        <% } %>
+                    </table>
+                </div>
+                <h3>Red Summons</h3>
+                <div class="table-container">
+                    <table class="red-summons-table">
+                        <tr>
+                            <td>Banner</td>
+                            <td>Number of summons</td>
+                            <td>Number of legendaries</td>
+                            <td>Average legendary pity</td>
+                            <td>50/50s won</td>
+                            <td>50/50s lost</td>
+                            <td>50/50s win percent</td>
+                            <td>Number of epics</td>
+                            <td>Average epic pity</td>
+                        </tr>
+                        <tr>
+                            <td> All Reds </td>
+                                <% for(let [statisticType, statistic] of Object.entries(summonStatisticsObject["Red"])) { %>
+                            <td> <%= statistic %> </td>
+                            <% } %>
+                        </tr>
+                    </table>
+                </div>
+                <p class="red-summons-footer">*Note: WIP for separate red banner stats</p>
+                <footer>
+                    <%- include('includes/footer'); %>
+                </footer>
+            </div>
+        <div class="padding-content"></div>
+    </div>
 
-            <tr>
-                <td></td>
-                <td>Ancient</td>
-            </tr>
-            <% for(let [statisticType, statistic] of Object.entries(summonStatisticsObject["Ancient"])) { %>
-                <tr>
-                    <td> <%= ancientTableHeaders[index] %> </td>
-                    <% index++ %>
-                    <td> <%= statistic %> </td>
-                </tr>
-            <% } %>
-        </table>
-      </form>
-    <form>
-
-    </form>
-    <script>
-
-    </script>
 </body>
 </html>

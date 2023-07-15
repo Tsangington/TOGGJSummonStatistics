@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('includes/head', {title: 'TOGGJ:GJ | Summon Statistics | Enter URL'}) %>
-
-
+<head>
+    <%- include('includes/head', {title: 'TOG:GJ-SS | Enter URL' }) %>
+</head>
 
 <body>
-    Welcome to TOG:GJ Summon Statistics!
-    <form action="/summonstatistics/" method="GET">
-        <input type="text" name="url" />
-        <button>Get Your Summon Statistics!</button>
-    <script>
+    <header>
+        <%- include('includes/header'); %>
+    </header>
+    <div class="content-container">
+        <div class="padding-content"></div>
+            <div class="content">
+                <h3> Welcome to TOG:GJ Summon Statistics! </h3>
+                <form action="/summonstatistics/" method="GET">
+                    <input type="text" name="url" />
+                    <button>Get Your Summon Statistics!</button>
+                    <footer>
+                        <%- include('includes/footer'); %>
+                    </footer>
+                </form>    
+            </div>
+        <div class="padding-content"></div>
+    </div>
 
-    </script>
 </body>
 </html>   
