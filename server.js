@@ -1,3 +1,4 @@
+import 'dotenv/config'
 const express = require("express")
 const mongoose = require("mongoose")
 const { parseData } = require('./parseData');
@@ -17,6 +18,10 @@ app.get("/", (request, response) => {
     response.render('index')
 })
 
+app.get("/about", (request, response) => {
+	response.render('about')
+})
+
 // get their URL 
 app.get("/summonstatistics", (request, response) => {
 
@@ -32,9 +37,7 @@ app.get("/summonstatistics", (request, response) => {
 	response.render("giveUrl")
  })
 
-    
-
-app.listen(port, () => {
-    console.log(`Server has started on port: ${port}`)
+app.listen(process.env.PORT, () => {
+	console.log(`Started server on port ${process.env.PORT}`)
 })
 

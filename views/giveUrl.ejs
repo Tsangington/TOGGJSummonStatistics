@@ -11,17 +11,32 @@
     <div class="content-container">
         <div class="padding-content"></div>
             <div class="content">
-                <h3> Welcome to TOG:GJ Summon Statistics! </h3>
+                <h2> Welcome to TOG:GJ Summon Statistics! </h2>
+                <h3> Enter your summon history URL below: </h3>
                 <form action="/summonstatistics/" method="GET">
-                    <input type="text" name="url" />
-                    <button>Get Your Summon Statistics!</button>
-                    <footer>
-                        <%- include('includes/footer'); %>
-                    </footer>
-                </form>    
+                    <div class="input-form">
+                        <div class="input-field">
+                            <input type="text" name="url" />
+                        </div>
+                        <div class="button-container">
+                            <button class="button-get-results">Get Your Summon Statistics</button>
+                        </div>
+                    </div>
+                </form>
+                <h2> How to use:</h2>
+                <p>Go to the in-game summon page, and click on the summon history, as shown below:</p>
+                <img src="/images/getSummonURL.png" alt="Click on summon history on the in-game summon page." style="width:800px;height:450px;">
+                <p>
+                    It should load a page which looks like this. Copy the URL and paste into the textbox,
+                    and clck the button.
+                </p>
+                <img src="/images/copySummonsURL.png" alt="Copy the resulting URL into the textbox here." style="width:800px;height:450px;">
+
             </div>
         <div class="padding-content"></div>
     </div>
-
+    <footer>
+        <%- include('includes/footer'); %>
+    </footer>
 </body>
 </html>   
