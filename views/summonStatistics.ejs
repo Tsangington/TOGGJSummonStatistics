@@ -3,18 +3,47 @@
 <%- include('includes/head', {title: 'TOGGJ:GJ | Summon Statistics | Enter URL'}) %>
 
 <body>
-    <form action="/giveURL" method="GET">
-        <input type="text" name="enterURL" />
-        <button>Get Your Summon Statistics!</button>
+    <% var summonStatisticsObject = summonStatisticsObject %>
         <br>
         <p> Your Summon Statistics: </p>
-        <% for(let [summonType, statisticDictionary] of Object.entries(summonStatisticsObject)) { %>
-            <u><%= summonType %> Summons </u>
-            <% for(let [statisticType, statistic] of Object.entries(statisticDictionary)) { %>
-                <p><%= statisticType %>: <%= statistic %></p>
-            <% } %>
-        <% } %>
+        <table class="mainTable">
+            <tr>
+                <td></td>
+                <td>Number of summons</td>
+                <td>Number of legendaries</td>
+                <td>Average legendary pity</td>
+                <td>Number of epics</td>
+                <td>Average epic pity</td>
+            </tr>
 
+            <% var mainTableKeys = ["Total", "Blue", "Destiny"]; %>
+            <% mainTableKeys.forEach(key => { %>
+                <% var statisticDictionary = summonStatisticsObject[key] %>
+                <tr>
+                    <td> <%= key %> </td>
+                    <% for(let [statisticType, statistic] of Object.entries(statisticDictionary)) { %>
+                    <td> <%= statistic %> </td>
+                    <% } %>
+                </tr>
+            <% }) %>
+
+        </table>
+        <table class="ancientSummonsTable">
+            <% var ancientTableHeaders = ["Number of summons", "Number of ancients", "Average ancient pity", "Number of legendaries", "Average legendary pity", "Number of epics", "Average epic pity"] %>
+            <% var index=0 %>
+
+            <tr>
+                <td></td>
+                <td>Ancient</td>
+            </tr>
+            <% for(let [statisticType, statistic] of Object.entries(summonStatisticsObject["Ancient"])) { %>
+                <tr>
+                    <td> <%= ancientTableHeaders[index] %> </td>
+                    <% index++ %>
+                    <td> <%= statistic %> </td>
+                </tr>
+            <% } %>
+        </table>
       </form>
     <form>
 

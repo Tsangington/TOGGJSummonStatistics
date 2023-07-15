@@ -6,11 +6,11 @@ async function parseData(url) {
 
 	[ancientData, redData, blueData, destinyData] = splitSummonTypes(totalSummonData)
 
-	var total = new SummonList(summonData = ancientData.concat(redData, blueData, destinyData), summonType = "total");
-	var ancient = new SummonList(summonData = ancientData, summonType = "ancient")
-	var red = new SummonList(summonData = redData, summonType = "red");
-	var blue = new SummonList(summonData = blueData, summonType = "blue");
-	var destiny = new SummonList(summonData = destinyData, summonType = "destiny");
+	var total = new SummonList(summonData = redData.concat(blueData, destinyData), summonType = "Total");
+	var ancient = new SummonList(summonData = ancientData, summonType = "Ancient")
+	var red = new SummonList(summonData = redData, summonType = "Red");
+	var blue = new SummonList(summonData = blueData, summonType = "Blue");
+	var destiny = new SummonList(summonData = destinyData, summonType = "Destiny");
 
 	var splitRedData = splitRedBanners(red.allLegendariesData)
 	var [fiftiesWon, fiftiesLost, fiftiesWonPercent] = countFifties(splitRedData)
@@ -20,24 +20,32 @@ async function parseData(url) {
 
 	for (let index = 0; index < summonArray.length; index++) { 
 		summonType = summonArray[index].summonType
+		
 		//create dictionary for each type of summons
 		summonStatistics[summonType] = {}
 
-		summonType = summonStatistics[summonType]
-		summonType["totalSummons"] = summonArray[index].summonTotal
-		summonType["totalLegendaries"] = summonArray[index].numberLegendary
-		summonType["averageLegendaryPity"] = summonArray[index].averageLegendaryPity
-		summonType["totalEpics"] = summonArray[index].numberEpic
-		summonType["averageEpicPity"] = summonArray[index].averageEpicPity
-	}
-	//Adding specific ancient banner data
-	summonStatistics["ancient"]["totalAncients"] = summonArray[1].numberAncient
-	summonStatistics["ancient"]["averageAncientPity"] = summonArray[1].averageAncientPity
+		summonTypeObject = summonStatistics[summonType]
+		summonTypeObject["totalSummons"] = summonArray[index].summonTotal
+		
+		//Adding specific ancient banner data
+		if (summonType === "Ancient") {
+			summonTypeObject["totalAncients"] = summonArray[index].numberAncient
+			c=summonTypeObject["averageAncientPity"] = summonArray[index].averageAncientPity
+		}
 
-	//Adding specific red banner data
-	summonStatistics["red"]["fiftiesWon"] = fiftiesWon
-	summonStatistics["red"]["fiftiesLost"] = fiftiesLost
-	summonStatistics["red"]["fiftiesWonPercent"] = fiftiesWonPercent
+		summonTypeObject["totalLegendaries"] = summonArray[index].numberLegendary
+		summonTypeObject["averageLegendaryPity"] = summonArray[index].averageLegendaryPity
+		
+		//Adding specific red banner data
+		if (summonType === "Red") {
+			summonTypeObject["fiftiesWon"] = fiftiesWon
+			summonTypeObject["fiftiesLost"] = fiftiesLost
+			summonTypeObject["fiftiesWonPercent"] = fiftiesWonPercent
+		}
+
+		summonTypeObject["totalEpics"] = summonArray[index].numberEpic
+		summonTypeObject["averageEpicPity"] = summonArray[index].averageEpicPity
+	}
 
 	return (summonStatistics)
 
@@ -183,7 +191,7 @@ function countFifties(splitRedData) {
 	}
 	var floatFiftiesWonPercent = (fiftiesWon/ (fiftiesWon+ fiftiesLost))*100
 	var fiftiesWonPercent = Math.round((floatFiftiesWonPercent + Number.EPSILON) * 100) / 100
-	return ([fiftiesWon, fiftiesLost, fiftiesWonPercent])
+	return ([fiftiesWon, fiftiesLost, `${fiftiesWonPercent}%`])
 }
 
 class SummonList {
@@ -398,5 +406,4 @@ let test = parseData(url)
 test.then(function(result) {
 	console.log(result) 
  })
- 
-*/
+ */
