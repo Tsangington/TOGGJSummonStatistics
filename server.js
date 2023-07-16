@@ -1,13 +1,16 @@
 require('dotenv').config()
 const express = require("express")
-const mongoose = require("mongoose")
+//const mongoose = require("mongoose")
 const { parseData } = require('./parseData');
 const { logger } = require("./middlewares/logger");
 const app = express()
 
+/* 
+Not required at the moment
 mongoose.connect('mongodb://127.0.0.1:27017/TOGGJSummonStatistics')
   .then(() => console.log('Database connected'))
   .catch(error => console.error(error))
+*/
 
 app.set('view engine', 'ejs')
 app.use(express.static("public"));
