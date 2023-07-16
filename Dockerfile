@@ -1,4 +1,4 @@
-docker pull ghcr.io/puppeteer/puppeteer:20.7.4
+FROM ghcr.io/puppeteer/puppeteer:20.7.4
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
@@ -6,6 +6,6 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 COPY . .
 CMD ["node", "server.js"]
