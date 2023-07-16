@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 
 async function scrapeSummons(url) {
     try {
+        console.log(`Starting scrape on the URL:${url}`)
         const browser = await puppeteer.launch({
             headless: "new",
             args: [
@@ -57,6 +58,7 @@ async function scrapeSummons(url) {
         }, table)
 
         await browser.close();
+        console.log(`Finishing scrape on the URL:${url}`)
         return summonData
     }
     catch (error) {
