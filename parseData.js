@@ -237,8 +237,6 @@ class SummonList {
 		var allLegendaries = [];
 		var allEpics = [];
 
-		//console.log(summonData)
-
 		for (let index = 0; index < summonData.length; index++) {
 			// Check whether a 2D array is passed in or just an array
 			if (typeof summonData[0] === "object") {
@@ -437,7 +435,7 @@ class EventSummonList extends SummonList {
 module.exports = {
 	parseData
 }
-	/*
+/*
 TESTING 
 for (let i=0; i < summonArray.length; i++) {
 
