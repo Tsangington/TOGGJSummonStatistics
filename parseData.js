@@ -116,6 +116,7 @@ class SummonList {
 				],
 			"legendary":
 				[
+					"Midnight Aurora Rachel",
 					"Emerald Ocean Yihwa Yeon",
 					"Summer Splash Endorsi",
 					"Bam",
@@ -151,6 +152,7 @@ class SummonList {
 					"Kranos Yuri Ha",
 					"Donghae Hatz",
 
+					"Jellyfish Parasol",
 					"Sparkling Beach Floppy Hat",
 					"Aqua Bong Bong",
 					"Blue Rune Angelic Spear",
@@ -373,7 +375,7 @@ class EventSummonList extends SummonList {
 	countFifties(separateEventSummons, eventName) {
 
 		const redBannerDictionary = {
-
+			"Midsummer's Silent Malice": "Midnight Aurora Rachel",
 			"Gorgeous Yeon's Flame": "Yihwa Yeon",
 			"The Best Scammer, Khun": "White Heavenly Mirror Khun",
 			"The Tower's Idol": "Bong Bong Endorsi",
@@ -390,6 +392,7 @@ class EventSummonList extends SummonList {
 			"A Cool Shot in the Middle of the Summer!": "Summer Splash Endorsi",
 			"Flame Under The Blazing Sun": "Emerald Ocean Yihwa Yeon",
 
+			"Midnight Aurora Rachel's Exclusive Ignition Weapon Pick-up":"Jellyfish Parasol",
 			"Yihwa Yeon's Exclusive Ignition Weapon Pick-up": "Hairpin of Noble Power",
 			"White Heavenly Mirror Khun's Exclusive Ignition Weapon Pick-up": "White Heavenly Mirror",
 			"Bong Bong Endorsi's Exclusive Ignition Weapon Pick-up": "Bong Bong",
