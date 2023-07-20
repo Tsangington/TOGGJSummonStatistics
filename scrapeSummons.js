@@ -48,8 +48,8 @@ async function scrapeSummons(url) {
             for (let i = 0; i < rows.length; i++) {
                 const cells = rows[i].querySelectorAll('th')
                 const rowData = [];
-                /* cells.length -1 since timestamps not needed */
-                for (let j = 0; j < (cells.length - 1); j++) {
+                /* start with 1 to remove first column, cells.length -1 since timestamps not needed */
+                for (let j = 1; j < (cells.length - 1); j++) {
                     rowData.push(cells[j].innerText);
                 }
                 result.push(rowData);

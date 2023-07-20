@@ -76,13 +76,23 @@
                         <tr>
                             <td> All Reds </td>
                                 <% for(let [statisticType, statistic] of Object.entries(summonStatisticsObject["Red"])) { %>
-                            <td> <%= statistic %> </td>
+                                    <% if (statisticType === "separateEventStatistics") { %>
+                                        <% continue %>
+                                    <% } else { %>
+                                        <td> <%= statistic %> </td>
+                                    <% } %>
                             <% } %>
                         </tr>
+                        <% for(let [eventName, statisticObject] of Object.entries(summonStatisticsObject["Red"]["separateEventStatistics"])) { %>
+                            <tr>
+                                <td> <%= eventName %> </td>
+                            <% for(let [statisticType, statistic] of Object.entries(statisticObject)) { %>
+                                <td> <%= statistic %> </td>
+                            <% } %>
+                            </tr>
+                        <% } %>
                     </table>
                 </div>
-                <p class="red-summons-footer">*Note: WIP for separate red banner stats</p>
-
             </div>
         <div class="padding-content"></div>
     </div>
