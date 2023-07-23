@@ -6,5 +6,4 @@ Built via Javascript, HTML, CSS, Node.js and Puppeteer.
 Currently hosted on onrender for free.
 Adding more features as I go,
 
-Currently hosted on render:
 https://toggjss.onrender.com/
