@@ -116,6 +116,8 @@ class SummonList {
 				],
 			"legendary":
 				[
+					"Elaine",
+					"Khun Maschenny Jahad",
 					"Midnight Aurora Rachel",
 					"Emerald Ocean Yihwa Yeon",
 					"Summer Splash Endorsi",
@@ -152,6 +154,8 @@ class SummonList {
 					"Kranos Yuri Ha",
 					"Donghae Hatz",
 
+					"Invisible Inventory",
+					"The Three Horns",
 					"Jellyfish Parasol",
 					"Sparkling Beach Floppy Hat",
 					"Aqua Bong Bong",
@@ -194,6 +198,7 @@ class SummonList {
 				],
 			"epic":
 				[
+					"Alphine",
 					"Endorsi",
 					"Hatz",
 					"Horyang",
@@ -375,6 +380,8 @@ class EventSummonList extends SummonList {
 	countFifties(separateEventSummons, eventName) {
 
 		const redBannerDictionary = {
+			"Queen of the No-Names": "Elaine",
+			"Cold Lightning's Rage": "Khun Maschenny Jahad",
 			"Midsummer's Silent Malice": "Midnight Aurora Rachel",
 			"Gorgeous Yeon's Flame": "Yihwa Yeon",
 			"The Best Scammer, Khun": "White Heavenly Mirror Khun",
@@ -392,6 +399,8 @@ class EventSummonList extends SummonList {
 			"A Cool Shot in the Middle of the Summer!": "Summer Splash Endorsi",
 			"Flame Under The Blazing Sun": "Emerald Ocean Yihwa Yeon",
 
+			"Elaine's Exclusive Ignition Weapon Pick-up": "Invisible Inventory",
+			"Khun Maschenny Jahad's Exclusive Ignition Weapon Pick-up": "The Three Horns",
 			"Midnight Aurora Rachel's Exclusive Ignition Weapon Pick-up":"Jellyfish Parasol",
 			"Yihwa Yeon's Exclusive Ignition Weapon Pick-up": "Hairpin of Noble Power",
 			"White Heavenly Mirror Khun's Exclusive Ignition Weapon Pick-up": "White Heavenly Mirror",
