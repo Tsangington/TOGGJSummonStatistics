@@ -380,7 +380,7 @@ class EventSummonList extends SummonList {
 	countFifties(separateEventSummons, eventName) {
 
 		const redBannerDictionary = {
-			"Queen of the No-Names": "Elaine",
+			"Queen Of The No-Names": "Elaine",
 			"Cold Lightning's Rage": "Khun Maschenny Jahad",
 			"Midsummer's Silent Malice": "Midnight Aurora Rachel",
 			"Gorgeous Yeon's Flame": "Yihwa Yeon",
