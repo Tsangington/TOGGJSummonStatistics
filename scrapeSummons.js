@@ -89,6 +89,8 @@ async function scrapeSummons2(url) {
         for(let t of titleNode) {
             result.push(await t.evaluate(x => x.textContent));
         }
+        await browser.close();
+        console.log(`Finishing scrape on the URL:${url}`)
         
         return (result)
     }
