@@ -3,7 +3,7 @@ const json = require('JSON')
 
 async function parseData(url) {
 
-	const totalSummonData = await scrapeSummons2(url);
+	const summonData = await scrapeSummons2(url);
 
 	totalSummonData = []
 	summonData = json.parse(summonData)
