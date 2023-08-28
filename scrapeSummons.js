@@ -65,6 +65,38 @@ async function scrapeSummons(url) {
         console.log(error)
     }
 };
+async function scrapeSummons2(url) {
+    try {
+        console.log(`Starting scrape on the URL:${url}`)
+        const browser = await puppeteer.launch({
+            headless: "new",
+            args: [
+                "--disable-setuid-sandbox",
+                "--no-sandbox",
+                "--single-process",
+                "--no-zygote"
+            ],
+            executablePath: process.env.NODE_ENV === 'production'
+                ? process.env.PUPPETER_EXECUTABLE_PATH
+                : puppeteer.executablePath(),
+        });
+        const page = await browser.newPage();
+        await page.goto(url)
+
+        const titleNode = await page.$$("#__NEXT_DATA__");
+    
+        let result = [];
+        for(let t of titleNode) {
+            result.push(await t.evaluate(x => x.textContent));
+        }
+        
+        return (result)
+    }
+    catch (error) {
+        console.log(error)
+    }
+};
 module.exports = {
-    scrapeSummons
+    scrapeSummons,
+    scrapeSummons2
 };

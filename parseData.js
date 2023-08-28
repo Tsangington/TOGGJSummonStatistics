@@ -1,8 +1,18 @@
-const { scrapeSummons } = require('./scrapeSummons');
+const { scrapeSummons, scrapeSummons2 } = require('./scrapeSummons');
+const json = require('JSON')
 
 async function parseData(url) {
 
-	const totalSummonData = await scrapeSummons(url);
+	const totalSummonData = await scrapeSummons2(url);
+
+	totalSummonData = []
+	summonData = json.parse(summonData)
+	summonHistory = summonData.props.pageProps.histories
+
+	for (let index=0; index<summonHistory.length; index++) {
+
+		totalSummonData.push( [summonHistory[index]["itemName"], summonHistory[index]["gachaName"]])
+	}
 
 	[ancientData, redData, blueData, destinyData] = splitSummonTypes(totalSummonData)
 
