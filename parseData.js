@@ -3,8 +3,7 @@ const json = require('JSON')
 
 async function parseData(url) {
 
-	const summonData = await scrapeSummons2(url);
-
+	summonData = await scrapeSummons2(url);
 	totalSummonData = []
 	summonData = json.parse(summonData)
 	summonHistory = summonData.props.pageProps.histories
