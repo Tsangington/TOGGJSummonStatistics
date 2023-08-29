@@ -125,6 +125,7 @@ class SummonList {
 				],
 			"legendary":
 				[
+					"Rachel Swallowed the Darkness",
 					"Elaine",
 					"Khun Maschenny Jahad",
 					"Midnight Aurora Rachel",
@@ -389,6 +390,7 @@ class EventSummonList extends SummonList {
 	countFifties(separateEventSummons, eventName) {
 
 		const redBannerDictionary = {
+			"Malice in the Deep Abyss": "Rachel Swallowed the Darkness",
 			"Queen Of The No-Names": "Elaine",
 			"Cold Lightning's Rage": "Khun Maschenny Jahad",
 			"Midsummer's Silent Malice": "Midnight Aurora Rachel",
@@ -408,6 +410,7 @@ class EventSummonList extends SummonList {
 			"A Cool Shot in the Middle of the Summer!": "Summer Splash Endorsi",
 			"Flame Under The Blazing Sun": "Emerald Ocean Yihwa Yeon",
 
+			"Rachel Swallowed the Darkness's Exclusive Ignition Weapon Pick-up": "The Lighthouse of Abyss",
 			"Elaine's Exclusive Ignition Weapon Pick-up": "Invisible Inventory",
 			"Khun Maschenny Jahad's Exclusive Ignition Weapon Pick-up": "The Three Horns",
 			"Midnight Aurora Rachel's Exclusive Ignition Weapon Pick-up":"Jellyfish Parasol",
