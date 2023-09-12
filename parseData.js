@@ -125,6 +125,7 @@ class SummonList {
 				],
 			"legendary":
 				[
+					"Evankhell",
 					"Rachel Swallowed the Darkness",
 					"Elaine",
 					"Khun Maschenny Jahad",
@@ -164,6 +165,7 @@ class SummonList {
 					"Kranos Yuri Ha",
 					"Donghae Hatz",
 
+					"Ancient Flare",
 					"Invisible Inventory",
 					"The Three Horns",
 					"Jellyfish Parasol",
@@ -390,6 +392,9 @@ class EventSummonList extends SummonList {
 	countFifties(separateEventSummons, eventName) {
 
 		const redBannerDictionary = {
+			"Khun Family the Lineal Lightning Techinque User": "Khun Ran",
+			"Mysterious Doll Maker": "Verdi",
+			"Ruler of the Test Floor": "Evankhell",
 			"Malice in the Deep Abyss": "Rachel Swallowed the Darkness",
 			"Queen Of The No-Names": "Elaine",
 			"Cold Lightning's Rage": "Khun Maschenny Jahad",
@@ -409,7 +414,10 @@ class EventSummonList extends SummonList {
 			"Special Operations Commander of the Blazing Sun": "Waterbomb Commander Xiaxia",
 			"A Cool Shot in the Middle of the Summer!": "Summer Splash Endorsi",
 			"Flame Under The Blazing Sun": "Emerald Ocean Yihwa Yeon",
-
+		
+			"Khun Ran's Exclusive Ignition Weapon Pick-up": "Blue Lightning Nucleus",
+			"Verdi's Exclusive Ignition Weapon Pick-up": "Cosmic Pure Octopus",
+			"Evankhell's Exclusive Ignition Weapon Pick-up": "Ancient Flare",
 			"Rachel Swallowed the Darkness's Exclusive Ignition Weapon Pick-up": "The Lighthouse of Abyss",
 			"Elaine's Exclusive Ignition Weapon Pick-up": "Invisible Inventory",
 			"Khun Maschenny Jahad's Exclusive Ignition Weapon Pick-up": "The Three Horns",
