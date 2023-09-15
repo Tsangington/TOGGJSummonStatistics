@@ -19,7 +19,9 @@
                             <input type="text" name="url" />
                         </div>
                         <div class="button-container">
-                            <button class="button-get-results">Get Your Summon Statistics</button>
+                            <button class="button-get-results" onclick="validate()">
+                                Get Your Summon Statistics
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -38,15 +40,15 @@
     <footer>
         <%- include('includes/footer'); %>
     </footer>
+    <script>
+        function validate() {
+            if (document.getElementsByName("url").value == "") {
+                alert("Must not be blank.");
+            }
+            else if (document.getElementsByName("url").length > 60) {
+                alert("Must enter a correct summon history URL.");
+            }
+        }
+    </script>
 </body>
-<script>
-    function validate() {
-        if (document.getElementsByName("url").value == "") {
-            alert("Must enter your summon history URL");
-        }
-        else if (document.getElementsByName("url").length > 60) {
-            alert("Must enter a correct summon history URL");
-        }
-    }
-   </script>
 </html>   
