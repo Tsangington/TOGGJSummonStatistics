@@ -28,7 +28,7 @@
                 <img src="/images/getSummonURL.png" alt="Click on summon history on the in-game summon page." style="width:800px;height:450px;">
                 <p>
                     It should load a page which looks like this. Copy the URL and paste into the textbox,
-                    and clck the button.
+                    and click the button.
                 </p>
                 <img src="/images/copySummonsURL.png" alt="Copy the resulting URL into the textbox here." style="width:800px;height:450px;">
 
@@ -39,4 +39,14 @@
         <%- include('includes/footer'); %>
     </footer>
 </body>
+<script>
+    function validate() {
+        if (document.getElementsByName("url").value == "") {
+            alert("Must enter your summon history URL");
+        }
+        else if (document.getElementsByName("url").length > 60) {
+            alert("Must enter a correct summon history URL");
+        }
+    }
+   </script>
 </html>   
