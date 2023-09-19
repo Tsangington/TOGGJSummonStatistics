@@ -2,6 +2,20 @@
 <html lang="en">
 <head>
     <%- include('includes/head', {title: 'TOG:GJ-SS | Enter URL' }) %>
+    <script>
+        function validate() {
+            var input = document.querySelector('input[name="url"]');
+            var inputValue = input.value.trim(); // Remove leading/trailing white spaces
+            
+            if (inputValue === '' || inputValue.length > 60) {
+                alert('Please enter a valid summon history URL');
+                return false; // Prevent form submission
+            }
+            
+            // Continue with form submission if validation passes
+            return true;
+        }
+    </script>
 </head>
 
 <body>
@@ -13,13 +27,13 @@
             <div class="content">
                 <h2> Welcome to TOG:GJ Summon Statistics! </h2>
                 <h3> Enter your summon history URL below: </h3>
-                <form action="/summonstatistics/" method="GET">
+                <form action="/summonstatistics/" method="GET" onsubmit="return validate()">
                     <div class="input-form">
                         <div class="input-field">
                             <input type="text" name="url" />
                         </div>
                         <div class="button-container">
-                            <button class="button-get-results" onclick="validate()">
+                            <button class="button-get-results">
                                 Get Your Summon Statistics
                             </button>
                         </div>
@@ -40,15 +54,5 @@
     <footer>
         <%- include('includes/footer'); %>
     </footer>
-    <script>
-        function validate() {
-            if (document.getElementsByName("url").value == "") {
-                alert("Must not be blank.");
-            }
-            else if (document.getElementsByName("url").length > 60) {
-                alert("Must enter a correct summon history URL.");
-            }
-        }
-    </script>
 </body>
 </html>   
