@@ -125,6 +125,7 @@ class SummonList {
 				],
 			"legendary":
 				[
+					"Hockney",
 					"Evankhell",
 					"Rachel Swallowed the Darkness",
 					"Elaine",
@@ -165,6 +166,7 @@ class SummonList {
 					"Kranos Yuri Ha",
 					"Donghae Hatz",
 
+					"Lamplight of Leader",
 					"Ancient Flare",
 					"Invisible Inventory",
 					"The Three Horns",
@@ -392,6 +394,7 @@ class EventSummonList extends SummonList {
 	countFifties(separateEventSummons, eventName) {
 
 		const redBannerDictionary = {
+			"The One Who Leading into the Future": "Hockney",
 			"Khun Family the Lineal Lightning Techinque User": "Khun Ran",
 			"Mysterious Doll Maker": "Verdi",
 			"Ruler of the Test Floor": "Evankhell",
@@ -415,6 +418,7 @@ class EventSummonList extends SummonList {
 			"A Cool Shot in the Middle of the Summer!": "Summer Splash Endorsi",
 			"Flame Under The Blazing Sun": "Emerald Ocean Yihwa Yeon",
 		
+			"Hockney's Exclusive Ignition Weapon Pick-up": "Lamplight of Leader",
 			"Khun Ran's Exclusive Ignition Weapon Pick-up": "Blue Lightning Nucleus",
 			"Verdi's Exclusive Ignition Weapon Pick-up": "Cosmic Pure Octopus",
 			"Evankhell's Exclusive Ignition Weapon Pick-up": "Ancient Flare",
