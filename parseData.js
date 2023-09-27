@@ -125,6 +125,8 @@ class SummonList {
 				],
 			"legendary":
 				[
+					"Data Khun Edahn",
+					"Data Urek Mazino",
 					"Hockney",
 					"Evankhell",
 					"Rachel Swallowed the Darkness",
@@ -166,6 +168,8 @@ class SummonList {
 					"Kranos Yuri Ha",
 					"Donghae Hatz",
 
+					"Glitch Core",
+					"Lightning of the Giant",
 					"Lamplight of Leader",
 					"Ancient Flare",
 					"Invisible Inventory",
@@ -418,6 +422,8 @@ class EventSummonList extends SummonList {
 			"A Cool Shot in the Middle of the Summer!": "Summer Splash Endorsi",
 			"Flame Under The Blazing Sun": "Emerald Ocean Yihwa Yeon",
 		
+			"Data Urek Mazino's Exclusive Ignition Weapon Pick-up": "Glitch Core",
+			"Data Khun Edahn's Exclusive Ignition Weapon Pick-up": "Lightning of the Giant",
 			"Hockney's Exclusive Ignition Weapon Pick-up": "Lamplight of Leader",
 			"Khun Ran's Exclusive Ignition Weapon Pick-up": "Blue Lightning Nucleus",
 			"Verdi's Exclusive Ignition Weapon Pick-up": "Cosmic Pure Octopus",
