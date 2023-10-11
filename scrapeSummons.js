@@ -1,20 +1,13 @@
 const puppeteer = require('puppeteer');
+const BrowserObj = require('./browser')
+
+const environment = "production"
+const browserSettings = new BrowserObj.Browser(environment)
 
 async function scrapeSummons(url) {
     try {
-        console.log(`Starting scrape on the URL:${url}`)
-        const browser = await puppeteer.launch({
-            headless: "new",
-            args: [
-                "--disable-setuid-sandbox",
-                "--no-sandbox",
-                "--single-process",
-                "--no-zygote"
-            ],
-            executablePath: process.env.NODE_ENV === 'production'
-                ? process.env.PUPPETER_EXECUTABLE_PATH
-                : puppeteer.executablePath(),
-        });
+        console.log(`Starting scrape on the URL: ${url}`)
+        const browser = await puppeteer.launch(browserSettings)
         const page = await browser.newPage();
         await page.goto(url)
 
@@ -58,7 +51,7 @@ async function scrapeSummons(url) {
         }, table)
 
         await browser.close();
-        console.log(`Finishing scrape on the URL:${url}`)
+        console.log(`Finishing scrape on the URL: ${url}`)
         return summonData
     }
     catch (error) {
@@ -67,19 +60,8 @@ async function scrapeSummons(url) {
 };
 async function scrapeSummons2(url) {
     try {
-        console.log(`Starting scrape on the URL:${url}`)
-        const browser = await puppeteer.launch({
-            headless: "new",
-            args: [
-                "--disable-setuid-sandbox",
-                "--no-sandbox",
-                "--single-process",
-                "--no-zygote"
-            ],
-            executablePath: process.env.NODE_ENV === 'production'
-                ? process.env.PUPPETER_EXECUTABLE_PATH
-                : puppeteer.executablePath(),
-        });
+        console.log(`Starting scrape on the URL: ${url}`)
+        const browser = await puppeteer.launch(browserSettings)
         const page = await browser.newPage();
         await page.goto(url)
 
@@ -90,7 +72,7 @@ async function scrapeSummons2(url) {
             result.push(await t.evaluate(x => x.textContent));
         }
         await browser.close();
-        console.log(`Finishing scrape on the URL:${url}`)
+        console.log(`Finishing scrape on the URL: ${url}`)
         
         return (result)
     }
@@ -102,3 +84,10 @@ module.exports = {
     scrapeSummons,
     scrapeSummons2
 };
+/*
+let test = scrapeSummons2("https://global-tog-info.ngelgames.com/history/MTAyMzIxNjk=")
+test.then(function(result) {
+	console.log(result) 
+ })
+
+ */

@@ -90,7 +90,7 @@ function splitSummonTypes(totalSummonData) {
 			redData.push(totalSummonData[index])
 		}
 	}
-	return ([ancientData, redData, blueData, destinyData])
+	return ([ancientData, redData, blueData, destinyData]) 
 }
 
 class SummonList {
@@ -125,6 +125,8 @@ class SummonList {
 				],
 			"legendary":
 				[
+					"Data Khun Maschenny",
+					"Data Jahad",
 					"Data Khun Edahn",
 					"Data Urek Mazino",
 					"Hockney",
@@ -168,6 +170,8 @@ class SummonList {
 					"Kranos Yuri Ha",
 					"Donghae Hatz",
 
+					"Maschenny Sword",
+					"Lecalicus",
 					"Glitch Core",
 					"Lightning of the Giant",
 					"Lamplight of Leader",
@@ -506,9 +510,9 @@ console.log("____________________________________________________")
 const test2Url = "https://global-tog-info.ngelgames.com/history/MTAzMzMzOTQ="
 const testUrl = "https://global-tog-info.ngelgames.com/history/MTEyMDMzOTA="
 const url = 'https://global-tog-info.ngelgames.com/history/MTAyMzIxNjk='
-
-let test = parseData(url)
+*/
+const testUrl = "https://global-tog-info.ngelgames.com/history/MTAxMDAwMDE="
+let test = parseData(testUrl)
 test.then(function(result) {
 	console.log(result) 
- })
- */
+})
