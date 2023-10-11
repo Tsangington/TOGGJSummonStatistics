@@ -481,38 +481,3 @@ class EventSummonList extends SummonList {
 module.exports = {
 	parseData
 }
-/*
-TESTING 
-for (let i=0; i < summonArray.length; i++) {
-
-	console.log("____________________________________________________")
-	console.log("number of", summonArray[i].summonType, "summons:", summonArray[i].summonTotal)
-	if (i === 1) {
-		console.log("total Ancients from", summonArray[i].summonType, "summons:", summonArray[i].numberAncient)
-		console.log(summonArray[i].summonType, "average Ancient pity:", summonArray[i].averageAncientPity)
-	}
-	console.log("total Legendaries from", summonArray[i].summonType, "summons:", summonArray[i].numberLegendary)
-	console.log(summonArray[i].summonType, "average Legendary pity:", summonArray[i].averageLegendaryPity)
-	if (i === 2) {
-		console.log("Total 50/50s taken:", (fiftiesWon + fiftiesLost))
-		console.log("50/50s Won:", fiftiesWon)
-		console.log("50/50s Lost:", fiftiesLost)
-		console.log("50/50 Winrate:", fiftiesWonPercent)
-	}
-	console.log("total Epics from", summonArray[i].summonType, "summons:", summonArray[i].numberEpic)
-	console.log(summonArray[i].summonType, "average Epic pity:", summonArray[i].averageEpicPity)
-
-}
-console.log("____________________________________________________")
-*/
-/*
-//TESTING
-const test2Url = "https://global-tog-info.ngelgames.com/history/MTAzMzMzOTQ="
-const testUrl = "https://global-tog-info.ngelgames.com/history/MTEyMDMzOTA="
-const url = 'https://global-tog-info.ngelgames.com/history/MTAyMzIxNjk='
-*/
-const testUrl = "https://global-tog-info.ngelgames.com/history/MTAxMDAwMDE="
-let test = parseData(testUrl)
-test.then(function(result) {
-	console.log(result) 
-})
