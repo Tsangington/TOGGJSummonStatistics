@@ -425,7 +425,9 @@ class EventSummonList extends SummonList {
 			"Special Operations Commander of the Blazing Sun": "Waterbomb Commander Xiaxia",
 			"A Cool Shot in the Middle of the Summer!": "Summer Splash Endorsi",
 			"Flame Under The Blazing Sun": "Emerald Ocean Yihwa Yeon",
-		
+
+			"Data Khun Maschenny's Exclusive Ignition Weapon Pick-up": "Maschenny Sword",
+			"Data Jahad's Exclusive Ignition Weapon Pick-up": "Lecalicus",
 			"Data Urek Mazino's Exclusive Ignition Weapon Pick-up": "Glitch Core",
 			"Data Khun Edahn's Exclusive Ignition Weapon Pick-up": "Lightning of the Giant",
 			"Hockney's Exclusive Ignition Weapon Pick-up": "Lamplight of Leader",
