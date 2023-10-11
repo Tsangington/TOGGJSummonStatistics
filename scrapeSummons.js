@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const BrowserObj = require('./browser')
 
-const environment = "developement"
+const environment = "production"
 const browserSettings = new BrowserObj.Browser(environment)
 
 async function scrapeSummons(url) {
