@@ -84,10 +84,3 @@ module.exports = {
     scrapeSummons,
     scrapeSummons2
 };
-/*
-let test = scrapeSummons2("https://global-tog-info.ngelgames.com/history/MTAyMzIxNjk=")
-test.then(function(result) {
-	console.log(result) 
- })
-
- */
