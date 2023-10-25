@@ -74,38 +74,6 @@
                             <% } %>
                         </table>
                 </div>
-                <h3>Double Banner Summons</h3>
-                <div class="table-container">
-                    <table class="double-summons-table">
-                        <tr>
-                            <td>Banner</td>
-                            <td>Number of summons</td>
-                            <td>Number of legendaries</td>
-                            <td>Average legendary pity</td>
-                            <td>Number of epics</td>
-                            <td>Average epic pity</td>
-                            <td>Legendary Log</td>
-                        </tr>
-                        <tr>
-                            <td> All Double Summons </td>
-                                <% for(let [statisticType, statistic] of Object.entries(summonStatisticsObject["Double"])) { %>
-                                    <% if (statisticType === "separateBannerStatistics") { %>
-                                        <% continue %>
-                                    <% } else { %>
-                                        <td> <%= statistic %> </td>
-                                    <% } %>
-                            <% } %>
-                        </tr>
-                        <% for(let [eventName, statisticObject] of Object.entries(summonStatisticsObject["Double"]["separateBannerStatistics"])) { %>
-                            <tr>
-                                <td> <%= eventName %> </td>
-                            <% for(let [statisticType, statistic] of Object.entries(statisticObject)) { %>
-                                <td> <%= statistic %> </td>
-                            <% } %>
-                            </tr>
-                        <% } %>
-                    </table>
-                </div>
                 <h3>Red Summons</h3>
                 <div class="table-container">
                     <table class="red-summons-table">
