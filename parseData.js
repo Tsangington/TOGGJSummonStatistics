@@ -1,10 +1,10 @@
-const { scrapeSummons, scrapeSummons2 } = require('./scrapeSummons');
+const { scrapeSummons} = require('./scrapeSummons');
 const json = require('JSON')
 const statistics = require("./summonStatistics.js")
 
 async function parseData(url) {
 
-	summonData = await scrapeSummons2(url);
+	summonData = await scrapeSummons(url);
 	parsedSummonData = []
 	summonData = json.parse(summonData)
 	summonHistory = summonData.props.pageProps.histories
