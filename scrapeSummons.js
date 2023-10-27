@@ -5,6 +5,16 @@ const environment = "production"
 const browserSettings = new BrowserObj.Browser(environment)
 
 async function scrapeSummons(url) {
+    /* 
+    Takes in a URL to scrape from and return a stringified JSON object for 
+    further parsing.
+    
+    Parameters: 
+     - URL: string - To find the correct summon history to read from
+    
+    Returns:
+     - result: string - stringified JSON object to be used later on
+    */
     try {
         console.log(`Starting scrape on the URL: ${url}`)
         const browser = await puppeteer.launch(browserSettings)

@@ -3,6 +3,21 @@ const SummonType = require("./summonTypes.js")
 const banners = JSON.parse(fs.readFileSync('./data/banners.json').toString());
 
 class SummonStatistics{
+    /* 
+    The class which handles the overall creation of the object that 
+    is going to be passed into the front-end.
+    
+    Parameters: 
+     - totalSummonData: 2D array
+    
+    Methods:
+     - splitSummonTypes - Splits the summons into their categories for
+        further sorting
+        - Returns a 3D array [summonType][summonName][SummonBanner]
+     - getSummonObject - prepares the object to be sent to the fronted
+        - Parameters: None
+        - Returns said object
+    */
     constructor(totalSummonData) {
         this.summonData = totalSummonData
     }
