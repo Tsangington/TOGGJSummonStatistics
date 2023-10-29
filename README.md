@@ -3,6 +3,19 @@ Tower Of God: Great Journey Summon Statistics
 A website for people to show people their summon statistics on the game "Tower Of God: Great Journey".
 Built using Javascript, HTML, CSS, Node.js and Puppeteer.
 
+Setup instructions:
+- node server.js to run the server on your localhost.
+- If you are using prod environment it should just run with no dependencies needed.
+- If using dev environment:
+- Npm install these dependencies:
+-   "dotenv": "^16.3.1",
+    "ejs"
+    "express"
+    "jest"
+    "JSON"
+    "mongoose"
+    "puppeteer"
+
 Currently hosted on onrender for free.
 Adding more features as I go.
 
