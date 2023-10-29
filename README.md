@@ -5,16 +5,17 @@ Built using Javascript, HTML, CSS, Node.js and Puppeteer.
 
 Setup instructions:
 - node server.js to run the server on your localhost.
-- If you are using prod environment it should just run with no dependencies needed.
-- If using dev environment:
+ If you are using prod environment it should just run with no dependencies needed.
+  
+If you are using the dev environment:
 - Npm install these dependencies:
--   "dotenv": "^16.3.1",
-    "ejs"
-    "express"
-    "jest"
-    "JSON"
-    "mongoose"
-    "puppeteer"
+- "dotenv"
+- "ejs"
+- "express"
+- "jest"
+- "JSON"
+- "mongoose"
+- "puppeteer"
 
 Currently hosted on onrender for free.
 Adding more features as I go.
