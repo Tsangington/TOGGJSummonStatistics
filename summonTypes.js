@@ -4,6 +4,25 @@ const rarity = JSON.parse(fs.readFileSync('./data/rarity.json').toString());
 const banners = JSON.parse(fs.readFileSync('./data/banners.json').toString());
 
 class SummonData {
+	/* 
+    The base class which all the other SummonTypes branch out from.
+	Has the base methods which most classes will use/overwrite.
+
+    Parameters: 
+     - summonData: 2D array - [summonName][summonBanner]
+    
+	Methods:
+	 - averagePity: 
+	 - sortRarities:
+
+	The children class also might contain:
+	 - getStatistics
+	 - splitBanners
+	 - countFifties
+	 - sortBannerRarities
+	 - getBannerStatistics
+
+    */
 	constructor(summonData) {
 		this.summonData = summonData
 		this.summonTotal = summonData.length
