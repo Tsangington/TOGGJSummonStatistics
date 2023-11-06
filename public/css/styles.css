@@ -277,3 +277,11 @@ a.social-links:hover, .p-footer a:hover {
     width: auto;
     justify-content: center;
 }
+
+.donation-div {
+    text-align: center;
+    width: 670px;
+    height:auto;
+    border: 4px solid #ffffff;
+    border-radius: 10px;
+}
