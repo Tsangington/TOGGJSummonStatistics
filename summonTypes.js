@@ -36,7 +36,7 @@ class NormalSummons {
   }
 
   sortRarities (summonData) {
-    const sortedRarities = new RarityObject()
+    const sortedRarities = new RarityObject(summonData)
 
     for (let index = 0; index < summonData.length; index++) {
       const summonName = summonData[index][0]
@@ -202,48 +202,58 @@ class AncientSummons extends NormalSummons {
   }
 
   sortRarities (summonData) {
-    const sortedRarities = new RarityObject()
+    const ancients = []
+    const legendaries = []
+    const epics = []
 
     for (let index = 0; index < summonData.length; index++) {
       const summonName = summonData[index][0]
 
       if (rarity.ancient.includes(summonName) === true) {
-        sortedRarities.ancients.push(summonName)
+        ancients.push(summonName)
       } else if (rarity.legendary.includes(summonName) === true) {
-        sortedRarities.legendaries.push(summonName)
+        legendaries.push(summonName)
       } else if (rarity.epic.includes(summonName) === true) {
-        sortedRarities.epics.push(summonName)
+        epics.push(summonName)
       }
     }
-    return (sortedRarities)
+    return ([ancients, legendaries, epics])
   }
 
   sortBannerRarities (summonData) {
-    const sortedRarities = new RarityObject()
+    const ancients = []
+    const legendaries = []
+    const epics = []
 
     for (let index = 0; index < summonData.length; index++) {
       const summonName = summonData[index]
 
       if (rarity.ancient.includes(summonName) === true) {
-        sortedRarities.ancients.push(summonName)
+        ancients.push(summonName)
       } else if (rarity.legendary.includes(summonName) === true) {
-        sortedRarities.legendaries.push(summonName)
+        legendaries.push(summonName)
       } else if (rarity.epic.includes(summonName) === true) {
-        sortedRarities.epics.push(summonName)
+        epics.push(summonName)
       }
     }
-    return (sortedRarities)
+    return ([
+      ancients,
+      legendaries,
+      epics
+    ])
   }
 
   getBannerStatistics (splitBannerData) {
     this.separateBannerStatistics = {}
 
     for (const [bannerName, bannerSummons] of Object.entries(splitBannerData)) {
-      const sortedRarities = this.sortBannerRarities(bannerSummons, bannerName)
+      const [ancientsData,
+        legendariesData,
+        epicsData] = this.sortBannerRarities(bannerSummons, bannerName)
 
-      const bannerNumberAncient = sortedRarities.ancients.length
-      const bannerNumberLegendary = sortedRarities.legendaries.length
-      const bannerNumberEpic = sortedRarities.epics.length
+      const bannerNumberAncient = ancientsData.length
+      const bannerNumberLegendary = legendariesData.length
+      const bannerNumberEpic = epicsData.length
       const bannerSummonTotal = bannerSummons.length
 
       const eventAverageAncientPity = this.averagePity(bannerNumberAncient, bannerSummonTotal)
@@ -263,19 +273,19 @@ class AncientSummons extends NormalSummons {
   }
 
   getStatistics () {
-    const sortedRarities = this.sortRarities(this.summonData)
+    const [ancients, legendaries, epics] = this.sortRarities(this.summonData)
     this.getBannerStatistics(this.splitBanners())
-    this.averageAncientPity = this.averagePity(sortedRarities.ancients.length, this.summonTotal)
-    this.averageLegendaryPity = this.averagePity(sortedRarities.legendaries.length, this.summonTotal)
-    this.averageEpicPity = this.averagePity(sortedRarities.epics.length, this.summonTotal)
+    this.averageAncientPity = this.averagePity(ancients.length, this.summonTotal)
+    this.averageLegendaryPity = this.averagePity(legendaries.length, this.summonTotal)
+    this.averageEpicPity = this.averagePity(epics.length, this.summonTotal)
 
     return {
       totalSummons: this.summonTotal,
-      totalAncients: sortedRarities.ancients.length,
+      totalAncients: ancients.length,
       averageAncientPity: this.averageAncientPity,
-      totalLegendaries: sortedRarities.legendaries.length,
+      totalLegendaries: legendaries.length,
       averageLegendaryPity: this.averageLegendaryPity,
-      totalEpics: sortedRarities.epics.length,
+      totalEpics: epics.length,
       averageEpicPity: this.averageEpicPity,
       separateBannerStatistics: this.separateBannerStatistics
     }
@@ -302,18 +312,22 @@ class DoubleSummons extends NormalSummons {
   }
 
   sortBannerRarities (summonData) {
-    const sortedRarities = new RarityObject()
+    const legendaries = []
+    const epics = []
 
     for (let index = 0; index < summonData.length; index++) {
       const summonName = summonData[index]
 
       if (rarity.legendary.includes(summonName) === true) {
-        sortedRarities.legendaries.push(summonName)
+        legendaries.push(summonName)
       } else if (rarity.epic.includes(summonName) === true) {
-        sortedRarities.epics.push(summonName)
+        epics.push(summonName)
       }
     }
-    return (sortedRarities)
+    return ([
+      legendaries,
+      epics
+    ])
   }
 
   getBannerStatistics (splitBannerData) {
