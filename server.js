@@ -1,8 +1,8 @@
 require('dotenv').config()
 const express = require("express")
 //const mongoose = require("mongoose")
-const parseData = require('./parseData');
-const { logger } = require("./middlewares/logger");
+const { logger } = require('./middlewares/logger');
+const { getSummonObject } = require('./summonStatistics')
 const app = express()
 
 
@@ -29,7 +29,7 @@ app.get("/about", (request, response) => {
 app.get("/summonstatistics", (request, response) => {
 
     //enter summonStats here
-	var parseSummons = parseData.getSummonObject(request.query.url)
+	var parseSummons = getSummonObject(request.query.url)
 	parseSummons.then(function(summonStatisticsObject) {
 		response.render('summonStatistics', 
 		{ "summonStatisticsObject" : summonStatisticsObject })
