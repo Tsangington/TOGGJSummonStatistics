@@ -1,6 +1,27 @@
 const fs = require('fs')
 const SummonType = require('./summonTypes.js')
 const banners = JSON.parse(fs.readFileSync('./data/banners.json').toString())
+const { parseData } = require('./scrapeSummons.js')
+const { scrapeSummons } = require('./scrapeSummons.js')
+
+async function getSummonObject (url) {
+  /*
+    Takes the URL, gets the parsedSummonData array and creates the
+    SummonObject that will be passed to the frontend
+
+    Parameters:
+     - URL: string - To find the correct summon history to read from
+
+    Returns:
+     - SummonObject : Object - Object with all the summonTypes and statistics
+      to be shown in the front-end
+    */
+  const rawSummonData = await scrapeSummons(url)
+  const parsedSummonData = await parseData(rawSummonData)
+  const summonStatistics = new SummonStatistics(parsedSummonData)
+
+  return summonStatistics.getSummonObject()
+}
 
 class SummonStatistics {
   /*
@@ -39,7 +60,7 @@ class SummonStatistics {
         ancientData.push(totalSummonData[index])
       } else if (summonType in doubleBanners) {
         doubleData.push(totalSummonData[index])
-      } else if (summonType === "The One Who Opens The Tower's Door") { // || summonType === "Selective Summon"
+      } else if (summonType === "The One Who Opens The Tower's Door") {
         blueData.push(totalSummonData[index])
       } else if (summonType.startsWith('Destiny Summon') === true) {
         destinyData.push(totalSummonData[index])
@@ -74,5 +95,6 @@ class SummonStatistics {
 }
 
 module.exports = {
-  SummonStatistics
+  SummonStatistics,
+  getSummonObject
 }

@@ -3,7 +3,7 @@ const fs = require('fs')
 const rarity = JSON.parse(fs.readFileSync('./data/rarity.json').toString())
 const banners = JSON.parse(fs.readFileSync('./data/banners.json').toString())
 
-class SummonData {
+class NormalSummons {
   /*
     The base class which all the other SummonTypes branch out from.
     Has the base methods which most classes will use/overwrite.
@@ -53,12 +53,6 @@ class SummonData {
       epics
     ])
   }
-}
-
-class NormalSummons extends SummonData {
-  constructor (summonData) {
-    super(summonData)
-  }
 
   getStatistics () {
     const [legendaries, epics] = this.sortRarities(this.summonData)
@@ -75,11 +69,7 @@ class NormalSummons extends SummonData {
   }
 }
 
-class RedSummons extends SummonData {
-  constructor (summonData) {
-    super(summonData)
-  }
-
+class RedSummons extends NormalSummons {
   splitBanners () {
     const splitBannerData = {}
     const existingBannersPulled = []
@@ -196,11 +186,7 @@ class RedSummons extends SummonData {
   }
 }
 
-class AncientSummons extends SummonData {
-  constructor (summonData) {
-    super(summonData)
-  }
-
+class AncientSummons extends NormalSummons {
   splitBanners () {
     const splitBannerData = {}
     const existingBannersPulled = []
@@ -310,11 +296,7 @@ class AncientSummons extends SummonData {
   }
 }
 
-class DoubleSummons extends SummonData {
-  constructor (summonData) {
-    super(summonData)
-  }
-
+class DoubleSummons extends NormalSummons {
   splitBanners () {
     const splitBannerData = {}
     const existingBannersPulled = []
