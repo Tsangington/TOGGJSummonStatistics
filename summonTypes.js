@@ -1,5 +1,5 @@
 const fs = require('fs')
-
+const { RarityObject } = require('./rarityUtils')
 const rarity = JSON.parse(fs.readFileSync('./data/rarity.json').toString())
 const banners = JSON.parse(fs.readFileSync('./data/banners.json').toString())
 
@@ -36,34 +36,30 @@ class NormalSummons {
   }
 
   sortRarities (summonData) {
-    const legendaries = []
-    const epics = []
+    const sortedRarities = new RarityObject(summonData)
 
     for (let index = 0; index < summonData.length; index++) {
       const summonName = summonData[index][0]
 
       if (rarity.legendary.includes(summonName) === true) {
-        legendaries.push(summonName)
+        sortedRarities.legendaries.push(summonName)
       } else if (rarity.epic.includes(summonName) === true) {
-        epics.push(summonName)
+        sortedRarities.epics.push(summonName)
       }
     }
-    return ([
-      legendaries,
-      epics
-    ])
+    return (sortedRarities)
   }
 
   getStatistics () {
-    const [legendaries, epics] = this.sortRarities(this.summonData)
-    this.averageLegendaryPity = this.averagePity(legendaries.length, this.summonTotal)
-    this.averageEpicPity = this.averagePity(epics.length, this.summonTotal)
+    const sortedRarities = this.sortRarities(this.summonData)
+    this.averageLegendaryPity = this.averagePity(sortedRarities.legendaries.length, this.summonTotal)
+    this.averageEpicPity = this.averagePity(sortedRarities.epics.length, this.summonTotal)
 
     return {
       totalSummons: this.summonTotal,
-      totalLegendaries: legendaries.length,
+      totalLegendaries: sortedRarities.legendaries.length,
       averageLegendaryPity: this.averageLegendaryPity,
-      totalEpics: epics.length,
+      totalEpics: sortedRarities.epics.length,
       averageEpicPity: this.averageEpicPity
     }
   }
@@ -167,19 +163,19 @@ class RedSummons extends NormalSummons {
   }
 
   getStatistics () {
-    [this.legendaries, this.epics] = this.sortRarities(this.summonData)
+    const sortedRarities = this.sortRarities(this.summonData)
     this.getBannerStatistics(this.splitBanners())
-    this.averageLegendaryPity = this.averagePity(this.legendaries.length, this.summonTotal)
-    this.averageEpicPity = this.averagePity(this.epics.length, this.summonTotal)
+    this.averageLegendaryPity = this.averagePity(sortedRarities.legendaries.length, this.summonTotal)
+    this.averageEpicPity = this.averagePity(sortedRarities.epics.length, this.summonTotal)
 
     return {
       totalSummons: this.summonTotal,
-      totalLegendaries: this.legendaries.length,
+      totalLegendaries: sortedRarities.legendaries.length,
       averageLegendaryPity: this.averageLegendaryPity,
       fiftiesWon: this.totalFiftiesWon,
       fiftiesLost: this.totalFiftiesLost,
       fiftiesWonPercent: this.totalFiftiesWonPercent,
-      totalEpics: this.epics.length,
+      totalEpics: sortedRarities.epics.length,
       averageEpicPity: this.averageEpicPity,
       separateBannerStatistics: this.separateBannerStatistics
     }
@@ -360,16 +356,16 @@ class DoubleSummons extends NormalSummons {
   }
 
   getStatistics () {
-    const [legendaries, epics] = this.sortRarities(this.summonData)
+    const sortedRarities = this.sortRarities(this.summonData)
     this.getBannerStatistics(this.splitBanners())
-    this.averageLegendaryPity = this.averagePity(legendaries.length, this.summonTotal)
-    this.averageEpicPity = this.averagePity(epics.length, this.summonTotal)
+    this.averageLegendaryPity = this.averagePity(sortedRarities.legendaries.length, this.summonTotal)
+    this.averageEpicPity = this.averagePity(sortedRarities.epics.length, this.summonTotal)
 
     return {
       totalSummons: this.summonTotal,
-      totalLegendaries: legendaries.length,
+      totalLegendaries: sortedRarities.legendaries.length,
       averageLegendaryPity: this.averageLegendaryPity,
-      totalEpics: epics.length,
+      totalEpics: sortedRarities.epics.length,
       averageEpicPity: this.averageEpicPity,
       legendaryLog: this.legendaries,
       separateBannerStatistics: this.separateBannerStatistics
