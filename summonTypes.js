@@ -1,3 +1,4 @@
+
 const fs = require('fs')
 const { RarityObject } = require('./rarityUtils')
 const rarity = JSON.parse(fs.readFileSync('./data/rarity.json').toString())
@@ -61,9 +62,11 @@ class NormalSummons {
       averageLegendaryPity: this.averageLegendaryPity,
       totalEpics: sortedRarities.epics.length,
       averageEpicPity: this.averageEpicPity
+
     }
   }
 }
+
 
 class RedSummons extends NormalSummons {
   splitBanners () {
@@ -80,6 +83,7 @@ class RedSummons extends NormalSummons {
         splitBannerData[banner].push(this.summonData[i][0])
         existingBannersPulled.push(banner)
       }
+
     }
     return (splitBannerData)
   }
@@ -116,6 +120,7 @@ class RedSummons extends NormalSummons {
       } else if (rarity.epic.includes(summonName) === true) {
         epics.push(summonName)
       }
+
     }
     return ([
       legendaries,
@@ -291,7 +296,6 @@ class AncientSummons extends NormalSummons {
     }
   }
 }
-
 class DoubleSummons extends NormalSummons {
   splitBanners () {
     const splitBannerData = {}
@@ -310,7 +314,6 @@ class DoubleSummons extends NormalSummons {
     }
     return (splitBannerData)
   }
-
   sortBannerRarities (summonData) {
     const legendaries = []
     const epics = []
@@ -378,3 +381,4 @@ module.exports = {
   AncientSummons,
   DoubleSummons
 }
+
