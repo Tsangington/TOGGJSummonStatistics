@@ -334,11 +334,10 @@ class DoubleSummons extends NormalSummons {
     this.separateBannerStatistics = {}
 
     for (const [bannerName, bannerSummons] of Object.entries(splitBannerData)) {
-      const [legendariesData,
-        epicsData] = this.sortBannerRarities(bannerSummons, bannerName)
+      const sortedRarities = this.sortBannerRarities(bannerSummons, bannerName)
 
-      const bannerNumberLegendary = legendariesData.length
-      const bannerNumberEpic = epicsData.length
+      const bannerNumberLegendary = sortedRarities.legendaries.length
+      const bannerNumberEpic = sortedRarities.epics.length
       const bannerSummonTotal = bannerSummons.length
 
       const eventAverageLegendaryPity = this.averagePity(bannerNumberLegendary, bannerSummonTotal)
@@ -350,7 +349,7 @@ class DoubleSummons extends NormalSummons {
         averageLegendaryPity: eventAverageLegendaryPity,
         totalEpics: bannerNumberEpic,
         averageEpicPity: eventAverageEpicPity,
-        legendariesLog: legendariesData
+        legendariesLog: sortedRarities.legendaries
       }
     }
   }
