@@ -3,6 +3,10 @@ const SummonType = require('./summonTypes.js')
 const banners = JSON.parse(fs.readFileSync('./data/banners.json').toString())
 const { parseData } = require('./scrapeSummons.js')
 const { scrapeSummons } = require('./scrapeSummons.js')
+const { Browser } = require('./browser.js')
+
+const environment = 'production'
+const browser = new Browser(environment)
 
 async function getSummonObject (url) {
   /*
@@ -16,7 +20,7 @@ async function getSummonObject (url) {
      - SummonObject : Object - Object with all the summonTypes and statistics
       to be shown in the front-end
     */
-  const rawSummonData = await scrapeSummons(url)
+  const rawSummonData = await scrapeSummons(browser, url)
   const parsedSummonData = await parseData(rawSummonData)
   const summonStatistics = new SummonStatistics(parsedSummonData)
 

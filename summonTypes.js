@@ -315,22 +315,18 @@ class DoubleSummons extends NormalSummons {
     return (splitBannerData)
   }
   sortBannerRarities (summonData) {
-    const legendaries = []
-    const epics = []
+    const sortedRarities = new RarityObject()
 
     for (let index = 0; index < summonData.length; index++) {
       const summonName = summonData[index]
 
       if (rarity.legendary.includes(summonName) === true) {
-        legendaries.push(summonName)
+        sortedRarities.legendaries.push(summonName)
       } else if (rarity.epic.includes(summonName) === true) {
-        epics.push(summonName)
+        sortedRarities.epics.push(summonName)
       }
     }
-    return ([
-      legendaries,
-      epics
-    ])
+    return (sortedRarities)
   }
 
   getBannerStatistics (splitBannerData) {

@@ -1,9 +1,4 @@
-const puppeteer = require('puppeteer')
-const BrowserObj = require('./browser')
 const json = require('JSON')
-
-const environment = 'production'
-const browserSettings = new BrowserObj.Browser(environment)
 
 async function parseData (rawSummonData) {
   /*
@@ -27,7 +22,7 @@ async function parseData (rawSummonData) {
   return parsedSummonData
 };
 
-async function scrapeSummons (url) {
+async function scrapeSummons (browserInstance, url) {
   /*
     Takes in a URL to scrape from and return a stringified JSON object for
     further parsing.
@@ -41,7 +36,7 @@ async function scrapeSummons (url) {
 
   try {
     console.log(`Starting scrape on the URL: ${url}`)
-    const browser = await puppeteer.launch(browserSettings)
+    const browser = await browserInstance.launch
     const page = await browser.newPage()
     await page.goto(url)
 
