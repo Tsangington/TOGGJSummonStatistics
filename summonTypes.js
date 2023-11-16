@@ -106,22 +106,18 @@ class RedSummons extends NormalSummons {
   }
 
   sortBannerRarities (summonData) {
-    const legendaries = []
-    const epics = []
+    const sortedRarities = new RarityObject()
 
     for (let index = 0; index < summonData.length; index++) {
       const summonName = summonData[index]
 
       if (rarity.legendary.includes(summonName) === true) {
-        legendaries.push(summonName)
+        sortedRarities.legendaries.push(summonName)
       } else if (rarity.epic.includes(summonName) === true) {
-        epics.push(summonName)
+        sortedRarities.epics.push(summonName)
       }
     }
-    return ([
-      legendaries,
-      epics
-    ])
+    return (sortedRarities)
   }
 
   getBannerStatistics (splitBannerData) {
@@ -131,18 +127,17 @@ class RedSummons extends NormalSummons {
     this.totalFiftiesLost = 0
 
     for (const [bannerName, bannerSummons] of Object.entries(splitBannerData)) {
-      const [legendariesData,
-        epicsData] = this.sortBannerRarities(bannerSummons, bannerName)
+      const sortedRarities = this.sortBannerRarities(bannerSummons, bannerName)
 
       const [eventFiftiesWon,
         eventFiftiesLost,
-        eventFiftiesWonPercent] = this.countFifties(legendariesData, bannerName)
+        eventFiftiesWonPercent] = this.countFifties(sortedRarities.legendaries, bannerName)
 
       this.totalFiftiesWon += eventFiftiesWon
       this.totalFiftiesLost += eventFiftiesLost
 
-      const bannerNumberLegendary = legendariesData.length
-      const bannerNumberEpic = epicsData.length
+      const bannerNumberLegendary = sortedRarities.legendaries.length
+      const bannerNumberEpic = sortedRarities.epics.length
       const bannerSummonTotal = bannerSummons.length
 
       const eventAverageLegendaryPity = this.averagePity(bannerNumberLegendary, bannerSummonTotal)
@@ -203,58 +198,48 @@ class AncientSummons extends NormalSummons {
   }
 
   sortRarities (summonData) {
-    const ancients = []
-    const legendaries = []
-    const epics = []
+    const sortedRarities = new RarityObject()
 
     for (let index = 0; index < summonData.length; index++) {
       const summonName = summonData[index][0]
 
       if (rarity.ancient.includes(summonName) === true) {
-        ancients.push(summonName)
+        sortedRarities.ancients.push(summonName)
       } else if (rarity.legendary.includes(summonName) === true) {
-        legendaries.push(summonName)
+        sortedRarities.legendaries.push(summonName)
       } else if (rarity.epic.includes(summonName) === true) {
-        epics.push(summonName)
+        sortedRarities.epics.push(summonName)
       }
     }
-    return ([ancients, legendaries, epics])
+    return (sortedRarities)
   }
 
-  sortBannerRarities(summonData) {
-    const ancients = []
-    const legendaries = []
-    const epics = []
+  sortBannerRarities (summonData) {
+    const sortedRarities = new RarityObject()
 
     for (let index = 0; index < summonData.length; index++) {
       const summonName = summonData[index]
 
       if (rarity.ancient.includes(summonName) === true) {
-        ancients.push(summonName)
+        sortedRarities.ancients.push(summonName)
       } else if (rarity.legendary.includes(summonName) === true) {
-        legendaries.push(summonName)
+        sortedRarities.legendaries.push(summonName)
       } else if (rarity.epic.includes(summonName) === true) {
-        epics.push(summonName)
+        sortedRarities.epics.push(summonName)
       }
     }
-    return ([
-      ancients,
-      legendaries,
-      epics
-    ])
+    return (sortedRarities)
   }
 
-  getBannerStatistics(splitBannerData) {
+  getBannerStatistics (splitBannerData) {
     this.separateBannerStatistics = {}
 
     for (const [bannerName, bannerSummons] of Object.entries(splitBannerData)) {
-      const [ancientsData,
-        legendariesData,
-        epicsData] = this.sortBannerRarities(bannerSummons, bannerName)
+      const sortedRarities = this.sortBannerRarities(bannerSummons, bannerName)
 
-      const bannerNumberAncient = ancientsData.length
-      const bannerNumberLegendary = legendariesData.length
-      const bannerNumberEpic = epicsData.length
+      const bannerNumberAncient = sortedRarities.ancients.length
+      const bannerNumberLegendary = sortedRarities.legendaries.length
+      const bannerNumberEpic = sortedRarities.epics.length
       const bannerSummonTotal = bannerSummons.length
 
       const eventAverageAncientPity = this.averagePity(bannerNumberAncient, bannerSummonTotal)
@@ -273,27 +258,27 @@ class AncientSummons extends NormalSummons {
     }
   }
 
-  getStatistics() {
-    const [ancients, legendaries, epics] = this.sortRarities(this.summonData)
+  getStatistics () {
+    const sortedRarities = this.sortRarities(this.summonData)
     this.getBannerStatistics(this.splitBanners())
-    this.averageAncientPity = this.averagePity(ancients.length, this.summonTotal)
-    this.averageLegendaryPity = this.averagePity(legendaries.length, this.summonTotal)
-    this.averageEpicPity = this.averagePity(epics.length, this.summonTotal)
+    this.averageAncientPity = this.averagePity(sortedRarities.ancients.length, this.summonTotal)
+    this.averageLegendaryPity = this.averagePity(sortedRarities.legendaries.length, this.summonTotal)
+    this.averageEpicPity = this.averagePity(sortedRarities.epics.length, this.summonTotal)
 
     return {
       totalSummons: this.summonTotal,
-      totalAncients: ancients.length,
+      totalAncients: sortedRarities.ancients.length,
       averageAncientPity: this.averageAncientPity,
-      totalLegendaries: legendaries.length,
+      totalLegendaries: sortedRarities.legendaries.length,
       averageLegendaryPity: this.averageLegendaryPity,
-      totalEpics: epics.length,
+      totalEpics: sortedRarities.epics.length,
       averageEpicPity: this.averageEpicPity,
       separateBannerStatistics: this.separateBannerStatistics
     }
   }
 }
 class DoubleSummons extends NormalSummons {
-  splitBanners() {
+  splitBanners () {
     const splitBannerData = {}
     const existingBannersPulled = []
 
