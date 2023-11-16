@@ -4,7 +4,7 @@ const banners = JSON.parse(fs.readFileSync('./data/banners.json').toString())
 const { parseData } = require('./scrapeSummons.js')
 const { scrapeSummons } = require('./scrapeSummons.js')
 
-async function getSummonObject (url) {
+async function getSummonObject (browser, url) {
   /*
     Takes the URL, gets the parsedSummonData array and creates the
     SummonObject that will be passed to the frontend
@@ -16,7 +16,7 @@ async function getSummonObject (url) {
      - SummonObject : Object - Object with all the summonTypes and statistics
       to be shown in the front-end
     */
-  const rawSummonData = await scrapeSummons(url)
+  const rawSummonData = await scrapeSummons(browser, url)
   const parsedSummonData = await parseData(rawSummonData)
   const summonStatistics = new SummonStatistics(parsedSummonData)
 
