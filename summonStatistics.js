@@ -3,12 +3,8 @@ const SummonType = require('./summonTypes.js')
 const banners = JSON.parse(fs.readFileSync('./data/banners.json').toString())
 const { parseData } = require('./scrapeSummons.js')
 const { scrapeSummons } = require('./scrapeSummons.js')
-const { Browser } = require('./browser.js')
 
-const environment = 'production'
-const browser = new Browser(environment)
-
-async function getSummonObject (url) {
+async function getSummonObject (browser, url) {
   /*
     Takes the URL, gets the parsedSummonData array and creates the
     SummonObject that will be passed to the frontend

@@ -1,16 +1,12 @@
 require('dotenv').config()
 const express = require('express')
-// const mongoose = require("mongoose")
 const { logger } = require('./middlewares/logger')
 const { getSummonObject } = require('./summonStatistics')
 const app = express()
+const { Browser } = require('./browser.js')
 
-/*
-Not required at the moment
-mongoose.connect('mongodb://127.0.0.1:27017/TOGGJSummonStatistics')
-  .then(() => console.log('Database connected'))
-  .catch(error => console.error(error))
-*/
+const environment = 'production'
+const browser = new Browser(environment)
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
@@ -27,7 +23,7 @@ app.get('/about', (request, response) => {
 // get their URL
 app.get('/summonstatistics', (request, response) => {
   // enter summonStats here
-  const parseSummons = getSummonObject(request.query.url)
+  const parseSummons = getSummonObject(browser, request.query.url)
   parseSummons.then(function (summonStatisticsObject) {
     response.render('summonStatistics',
       { summonStatisticsObject })
