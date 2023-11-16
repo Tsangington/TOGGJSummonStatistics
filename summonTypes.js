@@ -1,4 +1,3 @@
-
 const fs = require('fs')
 const { RarityObject } = require('./rarityUtils')
 const rarity = JSON.parse(fs.readFileSync('./data/rarity.json').toString())
@@ -67,7 +66,6 @@ class NormalSummons {
   }
 }
 
-
 class RedSummons extends NormalSummons {
   splitBanners () {
     const splitBannerData = {}
@@ -83,7 +81,6 @@ class RedSummons extends NormalSummons {
         splitBannerData[banner].push(this.summonData[i][0])
         existingBannersPulled.push(banner)
       }
-
     }
     return (splitBannerData)
   }
@@ -120,7 +117,6 @@ class RedSummons extends NormalSummons {
       } else if (rarity.epic.includes(summonName) === true) {
         epics.push(summonName)
       }
-
     }
     return ([
       legendaries,
@@ -225,7 +221,7 @@ class AncientSummons extends NormalSummons {
     return ([ancients, legendaries, epics])
   }
 
-  sortBannerRarities (summonData) {
+  sortBannerRarities(summonData) {
     const ancients = []
     const legendaries = []
     const epics = []
@@ -248,7 +244,7 @@ class AncientSummons extends NormalSummons {
     ])
   }
 
-  getBannerStatistics (splitBannerData) {
+  getBannerStatistics(splitBannerData) {
     this.separateBannerStatistics = {}
 
     for (const [bannerName, bannerSummons] of Object.entries(splitBannerData)) {
@@ -277,7 +273,7 @@ class AncientSummons extends NormalSummons {
     }
   }
 
-  getStatistics () {
+  getStatistics() {
     const [ancients, legendaries, epics] = this.sortRarities(this.summonData)
     this.getBannerStatistics(this.splitBanners())
     this.averageAncientPity = this.averagePity(ancients.length, this.summonTotal)
@@ -297,7 +293,7 @@ class AncientSummons extends NormalSummons {
   }
 }
 class DoubleSummons extends NormalSummons {
-  splitBanners () {
+  splitBanners() {
     const splitBannerData = {}
     const existingBannersPulled = []
 
@@ -314,23 +310,20 @@ class DoubleSummons extends NormalSummons {
     }
     return (splitBannerData)
   }
+
   sortBannerRarities (summonData) {
-    const legendaries = []
-    const epics = []
+    const sortedRarities = new RarityObject()
 
     for (let index = 0; index < summonData.length; index++) {
       const summonName = summonData[index]
 
       if (rarity.legendary.includes(summonName) === true) {
-        legendaries.push(summonName)
+        sortedRarities.legendaries.push(summonName)
       } else if (rarity.epic.includes(summonName) === true) {
-        epics.push(summonName)
+        sortedRarities.epics.push(summonName)
       }
     }
-    return ([
-      legendaries,
-      epics
-    ])
+    return (sortedRarities)
   }
 
   getBannerStatistics (splitBannerData) {
@@ -381,4 +374,3 @@ module.exports = {
   AncientSummons,
   DoubleSummons
 }
-
