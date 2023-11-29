@@ -17,6 +17,7 @@
     "red":
     {
         "Crimson-Eyed Sorcerer": "Sachi Faker",
+        "Jahad's Twin Sisters": "Lilial Jahad",
         "A False Existence": "Daniel Hatchid",
         "The Playful Ghost": "Tricky Ghost Albelda",
         "Sweet Nightmare": "Sweet Nightmare Elaine",
@@ -44,7 +45,11 @@
         "A Cool Shot in the Middle of the Summer!": "Summer Splash Endorsi",
         "Flame Under The Blazing Sun": "Emerald Ocean Yihwa Yeon",
 
+<<<<<<< Updated upstream
         "Sachi Faker's Exclusive Ignition Weapon Pick-Up": "Crimson Rose",
+=======
+        "Lilial Jahad's Exclusive Ignition Weapon Pick-up": "Emerald Flower",
+>>>>>>> Stashed changes
         "Ghost of the 13 Months Yuri Ha's Exclusive Ignition Weapon Pick-up": "The 13 Months' Curse",
         "Arie Inieta's Exclusive Ignition Weapon Pick-up": "Krishna",
         "Daniel Hatchid's Exclusive Ignition Weapon Pick-up": "Necromance",
