@@ -16,6 +16,9 @@
     },
     "red":
     {
+        "Solitary Frost": "Ice Queen Garam Jahad",
+        "The Lost Princess of Jahad": "Garam Jahad",
+        "Suspicious Christmas Guide": "Suspicious Santa Hwaryun",
         "Crimson-Eyed Sorcerer": "Sachi Faker",
         "Jahad's Twin Sisters": "Lilial Jahad",
         "A False Existence": "Daniel Hatchid",
@@ -45,6 +48,12 @@
         "A Cool Shot in the Middle of the Summer!": "Summer Splash Endorsi",
         "Flame Under The Blazing Sun": "Emerald Ocean Yihwa Yeon",
 
+<<<<<<< HEAD
+        "Ice Queen Garam Jahad's Exclusive Ignition Weapon Pick-up":"The Queen's Tiara",
+        "Suspicious Santa Hwaryun's Exclusive Ignition Weapon Pick-up": "Christmas Nightmare",
+        "Garam Jahad's Exclusive Ignition Weapon Pick-up": "Bell of Dawn",
+=======
+>>>>>>> 7218ca13a93550e9999145e867094a07ef11c0dc
         "Sachi Faker's Exclusive Ignition Weapon Pick-Up": "Crimson Rose",
         "Lilial Jahad's Exclusive Ignition Weapon Pick-up": "Emerald Flower",
         "Ghost of the 13 Months Yuri Ha's Exclusive Ignition Weapon Pick-up": "The 13 Months' Curse",
@@ -79,6 +88,5 @@
         "Waterbomb Commander Xiaxia's Exclusive Ignition Weapon Pick-up": "Black Rabbit Water Gun",
         "Summer Splash Endorsi's Exclusive Ignition Weapon Pick-up ": "Aqua Bong Bong",
         "Emerald Ocean Yihwa Yeon's Exclusive Ignition Weapon Pick-up": "Sparkling Beach Floppy Hat"
-
     }
 }
