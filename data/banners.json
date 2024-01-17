@@ -1,9 +1,11 @@
 { 
     "ancient":
     {
+        "Ancient Character Pick-Up": "",
         "Great King of the Tower": "Jahad",
         "Jahad's Exclusive Ignition Weapon.": "Golden Needle of Genuine Light",
 
+        "Ancient Ignition Weapon Pick-Up": "",
         "The Aloof Wave of the Tower": "Poe Bidau Gustang", 
         "Poe Bidau Gustang's Exclusive Ignition Weapon.": "Ancient Book of Origin"
     },
