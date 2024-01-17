@@ -2,10 +2,12 @@
     "ancient":
     {
         "Ancient Character Pick-Up": "",
+        "Demonized Sword":"Ravaged Throne White",
         "Great King of the Tower": "Jahad",
         "Jahad's Exclusive Ignition Weapon.": "Golden Needle of Genuine Light",
 
         "Ancient Ignition Weapon Pick-Up": "",
+        "Ravaged Throne White's Exclusive Ignition Weapon": "Cullinan, the Soul-Burning Sword",
         "The Aloof Wave of the Tower": "Poe Bidau Gustang", 
         "Poe Bidau Gustang's Exclusive Ignition Weapon.": "Ancient Book of Origin"
     },
@@ -18,6 +20,7 @@
     },
     "red":
     {
+        "Great Power that Follows the King": "Kallavan",
         "Solitary Frost": "Ice Queen Garam Jahad",
         "The Lost Princess of Jahad": "Garam Jahad",
         "Suspicious Christmas Guide": "Suspicious Santa Hwaryun",
@@ -50,6 +53,7 @@
         "A Cool Shot in the Middle of the Summer!": "Summer Splash Endorsi",
         "Flame Under The Blazing Sun": "Emerald Ocean Yihwa Yeon",
 
+        "Kallavan's Exclusive Ignition Weapon Pick-up": "Essence of Bravery",
         "Ice Queen Garam Jahad's Exclusive Ignition Weapon Pick-up":"The Queen's Tiara",
         "Suspicious Santa Hwaryun's Exclusive Ignition Weapon Pick-up": "Christmas Nightmare",
         "Garam Jahad's Exclusive Ignition Weapon Pick-up": "Bell of Dawn",
