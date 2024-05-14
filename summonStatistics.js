@@ -77,11 +77,11 @@ class SummonStatistics {
         redData.push(totalSummonData[index])
       }
     }
-    return ([ancientData, redData, blueData, destinyData, doubleData, collabData, permaData])
+    return ([ancientData, redData, blueData, destinyData, doubleData, collabData, permaData, totalSummons])
   }
 
   getSummonObject () {
-    const [ancientData, redData, blueData, destinyData, doubleData, collabData, permaData] = this.splitSummonTypes(this.summonData)
+    const [ancientData, redData, blueData, destinyData, doubleData, collabData, permaData, totalSummons] = this.splitSummonTypes(this.summonData)
 
     const total = new SummonType.NormalSummons(redData.concat(blueData, destinyData, doubleData, collabData))
     const ancient = new SummonType.AncientSummons(ancientData)
@@ -100,7 +100,8 @@ class SummonStatistics {
       Destiny: destiny.getStatistics(),
       Double: double.getStatistics(),
       Collab: collab.getStatistics(),
-      Perma: perma.getStatistics()
+      Perma: perma.getStatistics(),
+      TotalSummons: totalSummons
     }
   }
 }
