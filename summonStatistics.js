@@ -49,16 +49,20 @@ class SummonStatistics {
     const blueData = []
     const destinyData = []
     const doubleData = []
+    const collabData = []
 
     const totalSummons = totalSummonData.length
     const ancientBanners = banners.ancient
     const doubleBanners = banners.double
+    const collabBanners = banners.collab
 
     for (let index = 0; index < totalSummons; index++) {
       const summonType = totalSummonData[index][1]
       if (summonType in ancientBanners === true) {
         ancientData.push(totalSummonData[index])
       } else if (summonType in doubleBanners) {
+        doubleData.push(totalSummonData[index])
+      } else if (summonType in collabBanners) {
         doubleData.push(totalSummonData[index])
       } else if (summonType === "The One Who Opens The Tower's Door") {
         blueData.push(totalSummonData[index])
@@ -70,18 +74,19 @@ class SummonStatistics {
         redData.push(totalSummonData[index])
       }
     }
-    return ([ancientData, redData, blueData, destinyData, doubleData])
+    return ([ancientData, redData, blueData, destinyData, doubleData, collabData])
   }
 
   getSummonObject () {
-    const [ancientData, redData, blueData, destinyData, doubleData] = this.splitSummonTypes(this.summonData)
+    const [ancientData, redData, blueData, destinyData, doubleData, collabData] = this.splitSummonTypes(this.summonData)
 
-    const total = new SummonType.NormalSummons(redData.concat(blueData, destinyData))
+    const total = new SummonType.NormalSummons(redData.concat(blueData, destinyData, doubleData, collabData))
     const ancient = new SummonType.AncientSummons(ancientData)
     const red = new SummonType.RedSummons(redData)
     const blue = new SummonType.NormalSummons(blueData)
     const destiny = new SummonType.NormalSummons(destinyData)
     const double = new SummonType.DoubleSummons(doubleData)
+    const collab = new SummonType.CollabSummons(collabData)
 
     return {
       Total: total.getStatistics(),
@@ -89,7 +94,8 @@ class SummonStatistics {
       Red: red.getStatistics(),
       Blue: blue.getStatistics(),
       Destiny: destiny.getStatistics(),
-      Double: double.getStatistics()
+      Double: double.getStatistics(),
+      Collab: collab.getStatistics()
     }
   }
 }

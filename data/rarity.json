@@ -1,16 +1,24 @@
 {
     "ancient":
         [   
+            "Wings of Freedom Urek Mazino",
             "Jahad",
             "Poe Bidau Gustang",
             "Ravaged Throne White",
             
+            "Seven Wings of Freedom",
             "Golden Needle of Genuine Light",
             "Ancient Book of Origin",
             "Cullinan, the Soul-Burning Sword"
         ],
     "legendary":
         [
+            "Kang Jinhyeok",
+            "Teresa",
+            "Alice",
+            "Andrea",
+            "Baylord Yama",
+            "Sweet Idol Yura Ha",
             "Kallavan",
             "Ice Queen Garam Jahad",
             "Suspicious Santa Hwaryun",
@@ -66,6 +74,12 @@
             "Kranos Yuri Ha",
             "Donghae Hatz",
 
+            "UNKNOWN",
+            "Saintess's Transformation",
+            "The Spear of Blood",
+            "Filth-Eating Urn",
+            "Qualification Not To Be Dominated",
+            "Fondant Au Chocolat",
             "Essence of Bravery",
             "The Queen's Tiara",
             "Christmas Nightmare",
@@ -126,6 +140,8 @@
         ],
     "epic":
         [
+            "Quaetro Blitz",
+            "Shilial Jahad",
             "Alphine",
             "Endorsi",
             "Hatz",

@@ -353,9 +353,122 @@ class DoubleSummons extends NormalSummons {
   }
 }
 
+class CollabSummons extends NormalSummons {
+  splitBanners () {
+    const splitBannerData = {}
+    const existingBannersPulled = []
+
+    for (let i = 0; i < this.summonData.length; i++) {
+      const banner = this.summonData[i][1]
+
+      if (existingBannersPulled.includes(banner) === true) {
+        splitBannerData[banner].push(this.summonData[i][0])
+      } else {
+        splitBannerData[banner] = []
+        splitBannerData[banner].push(this.summonData[i][0])
+        existingBannersPulled.push(banner)
+      }
+    }
+    return (splitBannerData)
+  }
+
+  countFifties (separatebannerSummons, eventName) {
+    let fiftiesWon = 0
+    let fiftiesLost = 0
+
+    // start from bottom of each array, to be in chronological order
+    for (let index = separatebannerSummons.length - 1; index >= 0; index--) {
+      if (separatebannerSummons[index] === banners.collab[eventName]) {
+        fiftiesWon++
+      } else {
+        fiftiesLost++
+        index--
+        if (index < 0) { continue }
+      }
+    }
+    const floatFiftiesWonPercent = (fiftiesWon / (fiftiesWon + fiftiesLost)) * 100
+    const fiftiesWonPercent = Math.round((floatFiftiesWonPercent + Number.EPSILON) * 100) / 100
+
+    return ([fiftiesWon, fiftiesLost, `${fiftiesWonPercent}%`])
+  }
+
+  sortBannerRarities (summonData) {
+    const sortedRarities = new RarityObject()
+
+    for (let index = 0; index < summonData.length; index++) {
+      const summonName = summonData[index]
+
+      if (rarity.legendary.includes(summonName) === true) {
+        sortedRarities.legendaries.push(summonName)
+      } else if (rarity.epic.includes(summonName) === true) {
+        sortedRarities.epics.push(summonName)
+      }
+    }
+    return (sortedRarities)
+  }
+
+  getBannerStatistics (splitBannerData) {
+    this.separateBannerStatistics = {}
+
+    this.totalFiftiesWon = 0
+    this.totalFiftiesLost = 0
+
+    for (const [bannerName, bannerSummons] of Object.entries(splitBannerData)) {
+      const sortedRarities = this.sortBannerRarities(bannerSummons, bannerName)
+
+      const [eventFiftiesWon,
+        eventFiftiesLost,
+        eventFiftiesWonPercent] = this.countFifties(sortedRarities.legendaries, bannerName)
+
+      this.totalFiftiesWon += eventFiftiesWon
+      this.totalFiftiesLost += eventFiftiesLost
+
+      const bannerNumberLegendary = sortedRarities.legendaries.length
+      const bannerNumberEpic = sortedRarities.epics.length
+      const bannerSummonTotal = bannerSummons.length
+
+      const eventAverageLegendaryPity = this.averagePity(bannerNumberLegendary, bannerSummonTotal)
+      const eventAverageEpicPity = this.averagePity(bannerNumberEpic, bannerSummonTotal)
+
+      this.separateBannerStatistics[bannerName] = {
+        totalSummons: bannerSummonTotal,
+        totalLegendaries: bannerNumberLegendary,
+        averageLegendaryPity: eventAverageLegendaryPity,
+        fiftiesWon: eventFiftiesWon,
+        fiftiesLost: eventFiftiesLost,
+        fiftiesWonPercent: eventFiftiesWonPercent,
+        totalEpics: bannerNumberEpic,
+        averageEpicPity: eventAverageEpicPity
+      }
+    }
+    const floatTotalFiftiesWonPercent = (this.totalFiftiesWon / (this.totalFiftiesWon + this.totalFiftiesLost)) * 100
+    this.totalFiftiesWonPercent = `${Math.round((floatTotalFiftiesWonPercent + Number.EPSILON) * 100) / 100}%`
+  }
+
+  getStatistics () {
+    const sortedRarities = this.sortRarities(this.summonData)
+    this.getBannerStatistics(this.splitBanners())
+    this.averageLegendaryPity = this.averagePity(sortedRarities.legendaries.length, this.summonTotal)
+    this.averageEpicPity = this.averagePity(sortedRarities.epics.length, this.summonTotal)
+
+    return {
+      totalSummons: this.summonTotal,
+      totalLegendaries: sortedRarities.legendaries.length,
+      averageLegendaryPity: this.averageLegendaryPity,
+      fiftiesWon: this.totalFiftiesWon,
+      fiftiesLost: this.totalFiftiesLost,
+      fiftiesWonPercent: this.totalFiftiesWonPercent,
+      totalEpics: sortedRarities.epics.length,
+      averageEpicPity: this.averageEpicPity,
+      separateBannerStatistics: this.separateBannerStatistics
+    }
+  }
+}
+
 module.exports = {
   NormalSummons,
   RedSummons,
   AncientSummons,
-  DoubleSummons
+  DoubleSummons,
+  CollabSummons
 }
