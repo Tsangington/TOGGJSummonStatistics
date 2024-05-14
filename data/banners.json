@@ -2,6 +2,7 @@
     "ancient":
     {
         "Ancient Character Pick-Up": "",
+        "The Strongest Man in the Tower": "Wings of Freedom Urek Mazino",
         "Demonized Sword":"Ravaged Throne White",
         "Great King of the Tower": "Jahad",
         "Jahad's Exclusive Ignition Weapon.": "Golden Needle of Genuine Light",
@@ -18,8 +19,22 @@
         "Fate of Data World": ["Data Khun Maschenny", "Data Jahad"],
         "Data of the Strongest Ones": ["Data Khun Edahn", "Data Urek Mazino"]
     },
+    "collab":
+    {
+        "The Veteran of the Tower": "Kang Jinhyeok",
+        "The Saintess of Amsterdam": "Teresa",
+        "The Progenitor of Ataraxia": "Alice",
+        "The Ruler of the 5th Floor": "Andrea",
+
+        "Kang Jinhyeok's Exclusive Ignition Weapon Pick-up": "UNKNOWN",
+        "Teresa's Exclusive Ignition Weapon Pick-up": "Saintess's Transformation",
+        "Alice's Exclusive Ignition Weapon Pick-up": "The Spear of Blood",
+        "Andrea's Exclusive Ignition Weapon Pick-up": "Filth-Eating Urn"
+    },
     "red":
     {
+        "God of Fighting Dogs": "Baylord Yama",
+        "Sweet Idol Yura Ha": "Fatal Sweetness",
         "Great Power that Follows the King": "Kallavan",
         "Solitary Frost": "Ice Queen Garam Jahad",
         "The Lost Princess of Jahad": "Garam Jahad",
@@ -53,6 +68,8 @@
         "A Cool Shot in the Middle of the Summer!": "Summer Splash Endorsi",
         "Flame Under The Blazing Sun": "Emerald Ocean Yihwa Yeon",
 
+        "Baylord Yama's Exclusive Ignition Weapon Pick-up": "Qualification Not To Be Dominated",
+        "Sweet Idol Yura Ha's Exclusive Ignition Weapon Pick-up": "Fondant Au Chocolat",
         "Kallavan's Exclusive Ignition Weapon Pick-up": "Essence of Bravery",
         "Ice Queen Garam Jahad's Exclusive Ignition Weapon Pick-up":"The Queen's Tiara",
         "Suspicious Santa Hwaryun's Exclusive Ignition Weapon Pick-up": "Christmas Nightmare",
