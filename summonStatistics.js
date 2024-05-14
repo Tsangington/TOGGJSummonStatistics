@@ -63,7 +63,7 @@ class SummonStatistics {
       } else if (summonType in doubleBanners) {
         doubleData.push(totalSummonData[index])
       } else if (summonType in collabBanners) {
-        doubleData.push(totalSummonData[index])
+        collabData.push(totalSummonData[index])
       } else if (summonType === "The One Who Opens The Tower's Door") {
         blueData.push(totalSummonData[index])
       } else if (summonType.startsWith('Destiny Summon') === true) {
