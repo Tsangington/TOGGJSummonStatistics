@@ -465,10 +465,88 @@ class CollabSummons extends NormalSummons {
   }
 }
 
+class PermaSummons extends NormalSummons {
+  splitBanners () {
+    const splitBannerData = {}
+    const existingBannersPulled = []
+
+    for (let i = 0; i < this.summonData.length; i++) {
+      const banner = this.summonData[i][1]
+
+      if (existingBannersPulled.includes(banner) === true) {
+        splitBannerData[banner].push(this.summonData[i][0])
+      } else {
+        splitBannerData[banner] = []
+        splitBannerData[banner].push(this.summonData[i][0])
+        existingBannersPulled.push(banner)
+      }
+    }
+    return (splitBannerData)
+  }
+
+  sortBannerRarities (summonData) {
+    const sortedRarities = new RarityObject()
+
+    for (let index = 0; index < summonData.length; index++) {
+      const summonName = summonData[index]
+
+      if (rarity.legendary.includes(summonName) === true) {
+        sortedRarities.legendaries.push(summonName)
+      } else if (rarity.epic.includes(summonName) === true) {
+        sortedRarities.epics.push(summonName)
+      }
+    }
+    return (sortedRarities)
+  }
+
+  getBannerStatistics (splitBannerData) {
+    this.separateBannerStatistics = {}
+
+    this.totalFiftiesWon = 0
+    this.totalFiftiesLost = 0
+
+    for (const [bannerName, bannerSummons] of Object.entries(splitBannerData)) {
+      const sortedRarities = this.sortBannerRarities(bannerSummons, bannerName)
+
+      const bannerNumberLegendary = sortedRarities.legendaries.length
+      const bannerNumberEpic = sortedRarities.epics.length
+      const bannerSummonTotal = bannerSummons.length
+
+      const eventAverageLegendaryPity = this.averagePity(bannerNumberLegendary, bannerSummonTotal)
+      const eventAverageEpicPity = this.averagePity(bannerNumberEpic, bannerSummonTotal)
+
+      this.separateBannerStatistics[bannerName] = {
+        totalSummons: bannerSummonTotal,
+        totalLegendaries: bannerNumberLegendary,
+        averageLegendaryPity: eventAverageLegendaryPity,
+        totalEpics: bannerNumberEpic,
+        averageEpicPity: eventAverageEpicPity
+      }
+    }
+  }
+
+  getStatistics () {
+    const sortedRarities = this.sortRarities(this.summonData)
+    this.getBannerStatistics(this.splitBanners())
+    this.averageLegendaryPity = this.averagePity(sortedRarities.legendaries.length, this.summonTotal)
+    this.averageEpicPity = this.averagePity(sortedRarities.epics.length, this.summonTotal)
+
+    return {
+      totalSummons: this.summonTotal,
+      totalLegendaries: sortedRarities.legendaries.length,
+      averageLegendaryPity: this.averageLegendaryPity,
+      totalEpics: sortedRarities.epics.length,
+      averageEpicPity: this.averageEpicPity,
+      separateBannerStatistics: this.separateBannerStatistics
+    }
+  }
+}
+
 module.exports = {
   NormalSummons,
   RedSummons,
   AncientSummons,
   DoubleSummons,
-  CollabSummons
+  CollabSummons,
+  PermaSummons
 }

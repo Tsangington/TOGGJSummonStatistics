@@ -50,6 +50,7 @@ class SummonStatistics {
     const destinyData = []
     const doubleData = []
     const collabData = []
+    const permaData = []
 
     const totalSummons = totalSummonData.length
     const ancientBanners = banners.ancient
@@ -64,6 +65,8 @@ class SummonStatistics {
         doubleData.push(totalSummonData[index])
       } else if (summonType in collabBanners) {
         collabData.push(totalSummonData[index])
+      } else if (summonType === 'My Own Regular' || summonType === 'My Own Ignition Weapon' || summonType === '1001 Exclusive Summon') {
+        permaData.push(totalSummonData[index])
       } else if (summonType === "The One Who Opens The Tower's Door") {
         blueData.push(totalSummonData[index])
       } else if (summonType.startsWith('Destiny Summon') === true) {
@@ -74,11 +77,11 @@ class SummonStatistics {
         redData.push(totalSummonData[index])
       }
     }
-    return ([ancientData, redData, blueData, destinyData, doubleData, collabData])
+    return ([ancientData, redData, blueData, destinyData, doubleData, collabData, permaData])
   }
 
   getSummonObject () {
-    const [ancientData, redData, blueData, destinyData, doubleData, collabData] = this.splitSummonTypes(this.summonData)
+    const [ancientData, redData, blueData, destinyData, doubleData, collabData, permaData] = this.splitSummonTypes(this.summonData)
 
     const total = new SummonType.NormalSummons(redData.concat(blueData, destinyData, doubleData, collabData))
     const ancient = new SummonType.AncientSummons(ancientData)
@@ -87,6 +90,7 @@ class SummonStatistics {
     const destiny = new SummonType.NormalSummons(destinyData)
     const double = new SummonType.DoubleSummons(doubleData)
     const collab = new SummonType.CollabSummons(collabData)
+    const perma = new SummonType.PermaSummons(permaData)
 
     return {
       Total: total.getStatistics(),
@@ -95,7 +99,8 @@ class SummonStatistics {
       Blue: blue.getStatistics(),
       Destiny: destiny.getStatistics(),
       Double: double.getStatistics(),
-      Collab: collab.getStatistics()
+      Collab: collab.getStatistics(),
+      Perma: perma.getStatistics()
     }
   }
 }
