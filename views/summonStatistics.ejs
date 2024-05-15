@@ -13,12 +13,11 @@
     <div class="padding-content"></div>
     <div class="content">
       <% var summonStatisticsObject=summonStatisticsObject %>
-      <% var totalSummons = summonStatisticsObject[TotalSummons] %>
         <h2> Your Summon Statistics </h2>
         <h3 class="main-table-header">Total, Blue and Destiny Summons</h3>
         <h2>
            Total Summons:
-           <%= totalSummons %>
+           <%= summonStatisticsObject['TotalSummons'] %>
         </h2>
         <div class="table-container">
           <table class="main-summons-table">
