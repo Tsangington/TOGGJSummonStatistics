@@ -25,6 +25,7 @@ app.get('/summonstatistics', (request, response) => {
   // enter summonStats here
   const parseSummons = getSummonObject(browser, request.query.url)
   parseSummons.then(function (summonStatisticsObject) {
+    console.log(summonStatisticsObject)
     response.render('summonStatistics',
       { summonStatisticsObject })
   })
