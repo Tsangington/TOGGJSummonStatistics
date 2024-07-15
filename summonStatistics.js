@@ -49,10 +49,13 @@ class SummonStatistics {
     const blueData = []
     const destinyData = []
     const doubleData = []
+    const collabData = []
+    const permaData = []
 
     const totalSummons = totalSummonData.length
     const ancientBanners = banners.ancient
     const doubleBanners = banners.double
+    const collabBanners = banners.collab
 
     for (let index = 0; index < totalSummons; index++) {
       const summonType = totalSummonData[index][1]
@@ -60,6 +63,10 @@ class SummonStatistics {
         ancientData.push(totalSummonData[index])
       } else if (summonType in doubleBanners) {
         doubleData.push(totalSummonData[index])
+      } else if (summonType in collabBanners) {
+        collabData.push(totalSummonData[index])
+      } else if (summonType === 'My Own Regular' || summonType === 'My Own Ignition Weapon' || summonType === '1001 Exclusive Summon') {
+        permaData.push(totalSummonData[index])
       } else if (summonType === "The One Who Opens The Tower's Door") {
         blueData.push(totalSummonData[index])
       } else if (summonType.startsWith('Destiny Summon') === true) {
@@ -70,18 +77,20 @@ class SummonStatistics {
         redData.push(totalSummonData[index])
       }
     }
-    return ([ancientData, redData, blueData, destinyData, doubleData])
+    return ([ancientData, redData, blueData, destinyData, doubleData, collabData, permaData, totalSummons])
   }
 
   getSummonObject () {
-    const [ancientData, redData, blueData, destinyData, doubleData] = this.splitSummonTypes(this.summonData)
+    const [ancientData, redData, blueData, destinyData, doubleData, collabData, permaData, totalSummons] = this.splitSummonTypes(this.summonData)
 
-    const total = new SummonType.NormalSummons(redData.concat(blueData, destinyData))
+    const total = new SummonType.NormalSummons(redData.concat(blueData, destinyData, doubleData, collabData))
     const ancient = new SummonType.AncientSummons(ancientData)
     const red = new SummonType.RedSummons(redData)
     const blue = new SummonType.NormalSummons(blueData)
     const destiny = new SummonType.NormalSummons(destinyData)
     const double = new SummonType.DoubleSummons(doubleData)
+    const collab = new SummonType.CollabSummons(collabData)
+    const perma = new SummonType.PermaSummons(permaData)
 
     return {
       Total: total.getStatistics(),
@@ -89,7 +98,10 @@ class SummonStatistics {
       Red: red.getStatistics(),
       Blue: blue.getStatistics(),
       Destiny: destiny.getStatistics(),
-      Double: double.getStatistics()
+      Double: double.getStatistics(),
+      Collab: collab.getStatistics(),
+      Perma: perma.getStatistics(),
+      TotalSummons: totalSummons
     }
   }
 }

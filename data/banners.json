@@ -1,9 +1,14 @@
 { 
     "ancient":
     {
+        "Ancient Character Pick-Up": "",
+        "The Strongest Man in the Tower": "Wings of Freedom Urek Mazino",
+        "Demonized Sword":"Ravaged Throne White",
         "Great King of the Tower": "Jahad",
         "Jahad's Exclusive Ignition Weapon.": "Golden Needle of Genuine Light",
 
+        "Ancient Ignition Weapon Pick-Up": "",
+        "Ravaged Throne White's Exclusive Ignition Weapon": "Cullinan, the Soul-Burning Sword",
         "The Aloof Wave of the Tower": "Poe Bidau Gustang", 
         "Poe Bidau Gustang's Exclusive Ignition Weapon.": "Ancient Book of Origin"
     },
@@ -14,8 +19,30 @@
         "Fate of Data World": ["Data Khun Maschenny", "Data Jahad"],
         "Data of the Strongest Ones": ["Data Khun Edahn", "Data Urek Mazino"]
     },
+    "collab":
+    {
+        "The Veteran of the Tower": "Kang Jinhyeok",
+        "The Saintess of Amsterdam": "Teresa",
+        "The Progenitor of Ataraxia": "Alice",
+        "The Ruler of the 5th Floor": "Andrea",
+
+        "Kang Jinhyeok's Exclusive Ignition Weapon Pick-up": "UNKNOWN",
+        "Teresa's Exclusive Ignition Weapon Pick-up": "Saintess's Transformation",
+        "Alice's Exclusive Ignition Weapon Pick-up": "The Spear of Blood",
+        "Andrea's Exclusive Ignition Weapon Pick-up": "Filth-Eating Urn"
+    },
     "red":
     {
+        "A Cat Dreaming Freedom": "Lo Po Bia Yasratcha",
+        "The Tyrant of Death": "Hell Joe",
+        "The Conductor of Flame Sweetfish": "Yeon's Flame Khun",
+        "God of Fighting Dogs": "Baylord Yama",
+        "Sweet Idol Yura Ha": "Fatal Sweetness",
+        "Great Power that Follows the King": "Kallavan",
+        "The Great King's Data": "Data Jahad",
+        "Solitary Frost": "Ice Queen Garam Jahad",
+        "The Lost Princess of Jahad": "Garam Jahad",
+        "Suspicious Christmas Guide": "Suspicious Santa Hwaryun",
         "Crimson-Eyed Sorcerer": "Sachi Faker",
         "Jahad's Twin Sisters": "Lilial Jahad",
         "A False Existence": "Daniel Hatchid",
@@ -45,6 +72,15 @@
         "A Cool Shot in the Middle of the Summer!": "Summer Splash Endorsi",
         "Flame Under The Blazing Sun": "Emerald Ocean Yihwa Yeon",
 
+        "Lo Po Bia Yasratcha's Exclusive Ignition Weapon Pick-up": "High Breeder's Essence",
+        "Hell Joe's Exclusive Ignition Weapon Pick-up": "Red Thryssa of the Tyrant", 
+        "Yeon's Flame Khun's Exclusive Ignition Weapon Pick-up": "Flame Sweetfish",
+        "Baylord Yama's Exclusive Ignition Weapon Pick-up": "Qualification Not To Be Dominated",
+        "Sweet Idol Yura Ha's Exclusive Ignition Weapon Pick-up": "Fondant Au Chocolat",
+        "Kallavan's Exclusive Ignition Weapon Pick-up": "Essence of Bravery",
+        "Ice Queen Garam Jahad's Exclusive Ignition Weapon Pick-up":"The Queen's Tiara",
+        "Suspicious Santa Hwaryun's Exclusive Ignition Weapon Pick-up": "Christmas Nightmare",
+        "Garam Jahad's Exclusive Ignition Weapon Pick-up": "Bell of Dawn",
         "Sachi Faker's Exclusive Ignition Weapon Pick-Up": "Crimson Rose",
         "Lilial Jahad's Exclusive Ignition Weapon Pick-up": "Emerald Flower",
         "Ghost of the 13 Months Yuri Ha's Exclusive Ignition Weapon Pick-up": "The 13 Months' Curse",
@@ -79,6 +115,5 @@
         "Waterbomb Commander Xiaxia's Exclusive Ignition Weapon Pick-up": "Black Rabbit Water Gun",
         "Summer Splash Endorsi's Exclusive Ignition Weapon Pick-up ": "Aqua Bong Bong",
         "Emerald Ocean Yihwa Yeon's Exclusive Ignition Weapon Pick-up": "Sparkling Beach Floppy Hat"
-
     }
 }
